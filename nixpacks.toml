@@ -1,9 +1,11 @@
-# Nixpacks configuration for PHP project
+# Nixpacks configuration for PHP project with mail support
 [phases.setup]
-nixPkgs = ["php83", "php83Extensions.mbstring", "php83Extensions.curl"]
+nixPkgs = ["php83", "php83Extensions.mbstring", "php83Extensions.curl", "msmtp"]
 
 [phases.build]
-cmds = []
+cmds = [
+    "echo 'sendmail_path = /usr/bin/msmtp -t' >> /etc/php.ini || true"
+]
 
 [start]
 cmd = "php -S 0.0.0.0:80 -t ."
