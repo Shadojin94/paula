@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "primary": "#C59217" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- POST SAMEDI 10/01 - JOUR J - Événement -->
+    <div class="w-[1080px] h-[1080px] bg-[#0D1B24] text-white relative overflow-hidden">
+        <!-- Fond avec effet -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#C59217]/20 to-transparent"></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-16 text-center">
+            
+            <div class="bg-[#C59217] text-[#0D1B24] px-8 py-3 rounded-full text-2xl font-bold uppercase mb-8 animate-pulse">
+                🔴 C'est Aujourd'hui !
+            </div>
+            
+            <h2 class="text-7xl font-bold leading-tight mb-6">
+                Reprise des<br/>
+                <span class="text-[#C59217]">Ateliers</span>
+            </h2>
+            
+            <div class="w-32 h-1 bg-[#C59217] mb-8"></div>
+            
+            <div class="bg-white/10 backdrop-blur rounded-3xl p-8 mb-8">
+                <div class="grid grid-cols-2 gap-8 text-left">
+                    <div>
+                        <p class="text-[#C59217] font-bold text-xl mb-2">🎤 Chant</p>
+                        <p class="text-3xl font-bold">15h00</p>
+                    </div>
+                    <div>
+                        <p class="text-[#C59217] font-bold text-xl mb-2">🎯 Prise de Parole</p>
+                        <p class="text-3xl font-bold">16h30</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-2xl text-gray-300">📍 Centre Alésia, Paris</p>
+            </div>
+            
+            <p class="text-3xl font-medium text-[#C59217]">
+                On vous attend ! 🙌
+            </p>
+        </div>
+        
+        <img src="../img/logo.png" class="absolute bottom-10 right-10 w-32 opacity-50" alt="Logo">
+    </div>
+</body>
+</html>

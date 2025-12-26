@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "gold": "#C59217", "navy": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- EVERGREEN - Conseil Voix -->
+    <div class="w-[1080px] h-[1080px] bg-white text-navy relative overflow-hidden">
+        <div class="bg-navy h-[320px] relative">
+            <img src="../img/logo.png" class="absolute top-10 right-10 w-[90px] brightness-0 invert" alt="Logo">
+            <div class="absolute bottom-12 left-16">
+                <p class="text-gold tracking-[0.25em] uppercase text-lg font-medium mb-3">Conseil</p>
+                <h1 class="text-white text-[44px] font-bold leading-[1.1]">
+                    La voix est<br/>un muscle
+                </h1>
+            </div>
+        </div>
+        
+        <div class="p-16 pt-12">
+            <p class="text-[26px] leading-relaxed text-gray-600 mb-10">
+                Comme tout muscle, elle a besoin d'être travaillée régulièrement pour gagner en puissance et en souplesse.
+            </p>
+            
+            <div class="space-y-6">
+                <p class="text-[26px] flex items-start gap-4">
+                    <span class="text-gold text-2xl">✦</span>
+                    <span>Échauffez votre voix chaque matin</span>
+                </p>
+                <p class="text-[26px] flex items-start gap-4">
+                    <span class="text-gold text-2xl">✦</span>
+                    <span>Hydratez-vous régulièrement</span>
+                </p>
+                <p class="text-[26px] flex items-start gap-4">
+                    <span class="text-gold text-2xl">✦</span>
+                    <span>Évitez de forcer sur votre voix</span>
+                </p>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <p class="text-[24px] text-gold font-medium">
+                    Prenez soin de votre instrument.
+                </p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 right-12">
+            <p class="text-gray-400 text-base">paulamesuret.com</p>
+        </div>
+    </div>
+</body>
+</html>

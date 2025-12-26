@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "gold": "#C59217", "navy": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- EVERGREEN - Question Silence -->
+    <div class="w-[1080px] h-[1080px] bg-navy text-white relative overflow-hidden flex flex-col">
+        <div class="p-12">
+            <img src="../img/logo.png" class="w-[100px]" alt="Logo">
+        </div>
+        
+        <div class="flex-1 flex flex-col items-center justify-center px-16 text-center">
+            <p class="text-gold tracking-[0.3em] uppercase text-xl font-medium mb-8">Question</p>
+            
+            <h1 class="text-[48px] font-bold leading-[1.15] mb-12">
+                Avez-vous peur<br/>du <span class="text-gold">silence</span><br/>quand vous parlez ?
+            </h1>
+            
+            <div class="w-20 h-1 bg-gold mb-12"></div>
+            
+            <p class="text-[28px] font-light text-gray-300 leading-relaxed">
+                Le silence n'est pas un vide.<br/>
+                <span class="text-gold font-medium">C'est un outil puissant.</span>
+            </p>
+        </div>
+        
+        <div class="p-12 text-center">
+            <p class="text-gray-500 text-lg">paulamesuret.com</p>
+        </div>
+    </div>
+</body>
+</html>

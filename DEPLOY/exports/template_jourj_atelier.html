@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "gold": "#C59217", "navy": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- TEMPLATE - Jour J Atelier (réutilisable) -->
+    <div class="w-[1080px] h-[1080px] bg-gold text-navy relative overflow-hidden flex flex-col">
+        <div class="p-12">
+            <img src="../img/logo.png" class="w-[100px]" alt="Logo">
+        </div>
+        
+        <div class="flex-1 flex flex-col items-center justify-center px-16 text-center">
+            <p class="text-navy/60 tracking-[0.3em] uppercase text-xl font-medium mb-6">C'est aujourd'hui</p>
+            
+            <h1 class="text-[56px] font-bold leading-[1.1] mb-10">
+                Reprise des<br/>Ateliers
+            </h1>
+            
+            <div class="w-20 h-1 bg-navy mb-10"></div>
+            
+            <div class="text-[28px] font-medium space-y-2 mb-10">
+                <p>Chant : 15h00</p>
+                <p>Prise de Parole : 16h30</p>
+            </div>
+            
+            <p class="text-[24px] text-navy/70">
+                Centre Alésia, Paris 14e
+            </p>
+        </div>
+        
+        <div class="p-12 text-center">
+            <p class="text-navy/50 text-lg font-medium">paulamesuret.com</p>
+        </div>
+    </div>
+</body>
+</html>

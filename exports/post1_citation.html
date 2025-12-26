@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C59217",
+                        "background-dark": "#0D1B24",
+                    },
+                    fontFamily: {
+                        "outfit": ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="w-[1080px] h-[1080px] bg-[#0D1B24] text-white relative overflow-hidden">
+        <img src="../img/logo.png" class="absolute top-[40px] left-[40px] w-[120px] z-20" alt="Logo">
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-20 text-center">
+            <span class="text-[#C59217] text-9xl mb-10 opacity-50 font-serif">"</span>
+            <h2 class="text-6xl font-light leading-tight mb-10 italic">
+                La voix est le muscle de l'âme.
+            </h2>
+            <div class="w-24 h-1 bg-[#C59217] mb-10"></div>
+            <p class="text-3xl font-bold uppercase tracking-widest text-[#C59217]">
+                L'Artisanat de la Voix
+            </p>
+        </div>
+        
+        <div class="absolute bottom-0 right-0 w-64 h-64 bg-[#C59217]/10 rounded-tl-full"></div>
+    </div>
+</body>
+</html>
