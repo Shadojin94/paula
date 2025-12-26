@@ -335,6 +335,100 @@
                     </article>
                 </template>
 
+                <!-- EMAIL SECTION -->
+                <section id="emails-section" class="mt-16 pt-8 border-t-2 border-dashed border-slate-200">
+                    <header
+                        class="glass rounded-2xl p-8 shadow-sm relative overflow-hidden border-l-4 border-l-indigo-500 mb-8">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
+                                <i data-lucide="mail" class="w-6 h-6 text-indigo-600"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-navy">Envoi d'Emails</h2>
+                        </div>
+                        <p class="text-slate-600 max-w-2xl leading-relaxed">
+                            Sélectionne un template, modifie-le si besoin, et envoie-le directement dans ta boîte mail
+                            pour le transférer ensuite.
+                        </p>
+                    </header>
+
+                    <div class="glass rounded-2xl shadow-sm border border-slate-200 overflow-hidden"
+                        x-data="emailSender()">
+                        <div class="p-6 border-b border-slate-100 bg-slate-50">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- Template Selector -->
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Template</label>
+                                    <select x-model="selectedTemplate" @change="loadTemplate()"
+                                        class="w-full rounded-lg border-slate-200 bg-white focus:border-indigo-500 focus:ring-indigo-500">
+                                        <option value="">-- Choisir un template --</option>
+                                        <option value="bienvenue">Bienvenue</option>
+                                        <option value="atelier">Invitation Atelier</option>
+                                        <option value="relance">Relance</option>
+                                    </select>
+                                </div>
+                                <!-- Subject -->
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Objet
+                                        du mail</label>
+                                    <input type="text" x-model="subject" placeholder="Objet de l'email..."
+                                        class="w-full rounded-lg border-slate-200 bg-white focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                                <!-- Recipient -->
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Envoyer
+                                        à</label>
+                                    <input type="email" x-model="recipient" placeholder="ton@email.com"
+                                        class="w-full rounded-lg border-slate-200 bg-white focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preview / Editor -->
+                        <div class="p-6">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Aperçu
+                                (modifiable)</label>
+                            <div class="border border-slate-200 rounded-lg overflow-hidden bg-white"
+                                style="max-height: 500px; overflow-y: auto;">
+                                <iframe x-ref="emailPreview" class="w-full"
+                                    style="min-height: 400px; border: none;"></iframe>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2">Tu peux modifier directement le contenu dans l'aperçu
+                                avant d'envoyer.</p>
+                        </div>
+
+                        <!-- Send Button -->
+                        <div class="p-6 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-slate-500">
+                                <i data-lucide="info" class="w-4 h-4"></i>
+                                <span class="text-sm">L'email sera envoyé depuis
+                                    <strong>contact@paula.live.cercleonline.com</strong></span>
+                            </div>
+                            <button @click="sendEmail()" :disabled="sending || !recipient || !subject"
+                                class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4" x-show="!sending"></i>
+                                <svg x-show="sending" class="animate-spin h-4 w-4 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                <span x-text="sending ? 'Envoi...' : 'Envoyer le mail'"></span>
+                            </button>
+                        </div>
+
+                        <!-- Status Message -->
+                        <div x-show="statusMessage" x-transition class="p-4 text-center"
+                            :class="statusSuccess ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'">
+                            <span x-text="statusMessage"></span>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
     </div>
@@ -936,6 +1030,81 @@ C'est le moment d'oser.`
                         this.notification.show = true;
                         setTimeout(() => this.notification.show = false, 2000);
                     });
+                }
+            }
+        }
+
+        // Email Sender Component
+        function emailSender() {
+            return {
+                selectedTemplate: '',
+                subject: '',
+                recipient: '',
+                sending: false,
+                statusMessage: '',
+                statusSuccess: false,
+                templates: {
+                    bienvenue: { url: 'emails/email_1_bienvenue.html', subject: 'Bienvenue chez Paula Mesuret' },
+                    atelier: { url: 'emails/email_2_atelier.html', subject: 'Osez votre voix ce Samedi !' },
+                    relance: { url: 'emails/email_3_relance.html', subject: 'Des nouvelles de Paula' }
+                },
+
+                loadTemplate() {
+                    if (!this.selectedTemplate) return;
+                    const template = this.templates[this.selectedTemplate];
+                    this.subject = template.subject;
+
+                    fetch(template.url)
+                        .then(res => res.text())
+                        .then(html => {
+                            const iframe = this.$refs.emailPreview;
+                            iframe.srcdoc = html;
+                            iframe.onload = () => {
+                                iframe.contentDocument.designMode = 'on';
+                            };
+                        })
+                        .catch(err => {
+                            this.statusMessage = 'Erreur lors du chargement du template';
+                            this.statusSuccess = false;
+                        });
+                },
+
+                async sendEmail() {
+                    if (!this.recipient || !this.subject) return;
+
+                    this.sending = true;
+                    this.statusMessage = '';
+
+                    const iframe = this.$refs.emailPreview;
+                    const htmlContent = iframe.contentDocument.documentElement.outerHTML;
+
+                    try {
+                        const response = await fetch('send_email.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                to: this.recipient,
+                                subject: this.subject,
+                                html: htmlContent
+                            })
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            this.statusMessage = '✅ ' + result.message;
+                            this.statusSuccess = true;
+                        } else {
+                            this.statusMessage = '❌ ' + result.error;
+                            this.statusSuccess = false;
+                        }
+                    } catch (err) {
+                        this.statusMessage = '❌ Erreur réseau. Vérifiez votre connexion.';
+                        this.statusSuccess = false;
+                    }
+
+                    this.sending = false;
+                    setTimeout(() => this.statusMessage = '', 5000);
                 }
             }
         }
