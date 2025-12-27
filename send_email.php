@@ -25,34 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Helper to get env var from multiple sources (Docker/Coolify compatible)
-function env($key, $default = '') {
-    if (isset($_ENV[$key]) && $_ENV[$key] !== '') return $_ENV[$key];
-    if (isset($_SERVER[$key]) && $_SERVER[$key] !== '') return $_SERVER[$key];
-    $val = getenv($key);
-    return ($val !== false && $val !== '') ? $val : $default;
-}
-
-// IONOS SMTP Configuration (from environment variables)
-define('SMTP_HOST', env('SMTP_HOST', 'smtp.ionos.fr'));
-define('SMTP_PORT', env('SMTP_PORT', 587));
-define('SMTP_USER', env('SMTP_USER'));
-define('SMTP_PASS', env('SMTP_PASS'));
-define('SMTP_FROM', env('SMTP_FROM', env('SMTP_USER')));
-define('SMTP_FROM_NAME', env('SMTP_FROM_NAME', 'Paula Mesuret'));
+// Load SMTP configuration
+require_once __DIR__ . '/smtp_config.php';
 
 // Check if credentials are configured
-if (empty(SMTP_USER) || empty(SMTP_PASS)) {
+if (!defined('SMTP_USER') || !defined('SMTP_PASS') || empty(SMTP_USER) || empty(SMTP_PASS)) {
     http_response_code(500);
-    echo json_encode([
-        'success' => false, 
-        'error' => 'SMTP non configuré. Ajoutez SMTP_USER et SMTP_PASS dans Coolify.',
-        'debug' => [
-            'getenv' => getenv('SMTP_USER') ?: 'empty',
-            'ENV' => isset($_ENV['SMTP_USER']) ? 'set' : 'not set',
-            'SERVER' => isset($_SERVER['SMTP_USER']) ? 'set' : 'not set'
-        ]
-    ]);
+    echo json_encode(['success' => false, 'error' => 'SMTP non configuré. Vérifiez smtp_config.php.']);
     exit();
 }
 
