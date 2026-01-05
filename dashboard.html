@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning Janvier 2026 - Paula Mesuret</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        :root {
+            --color-gold: #C59217;
+            --color-navy: #0D1B24;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f3f4f6;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(210, 100%, 96%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(45, 100%, 96%, 1) 0, transparent 50%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .text-gold {
+            color: var(--color-gold);
+        }
+
+        .bg-gold {
+            background-color: var(--color-gold);
+        }
+
+        .border-gold {
+            border-color: var(--color-gold);
+        }
+
+        .text-navy {
+            color: var(--color-navy);
+        }
+
+        .bg-navy {
+            background-color: var(--color-navy);
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800" x-data="dashboard()">
+
+    <!-- Mobile Nav -->
+    <div class="fixed top-4 right-4 z-50 lg:hidden">
+        <button @click="sidebarOpen = !sidebarOpen" class="p-2 bg-navy text-white rounded-lg shadow-lg">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+            class="fixed inset-y-0 left-0 z-40 w-80 bg-navy text-white transition-transform duration-300 lg:static lg:translate-x-0 flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-slate-700 flex items-center gap-4 bg-navy">
+                <div
+                    class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold text-xl border border-gold shadow-[0_0_15px_rgba(197,146,23,0.3)]">
+                    PM</div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-wide">L'Artisanat<br>de la Voix</h1>
+                    <p class="text-[11px] text-slate-400 mt-1 uppercase tracking-wider">Campagne Janvier 2026</p>
+                </div>
+            </div>
+
+            <div class="p-6 bg-gradient-to-br from-slate-800 to-navy border-b border-slate-700">
+                <div class="flex justify-between items-end mb-2">
+                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Progression</span>
+                    <span class="text-xl font-bold text-gold" x-text="progress + '%'">0%</span>
+                </div>
+                <div class="w-full bg-slate-700 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-gold h-full transition-all duration-700 ease-out"
+                        :style="'width: ' + progress + '%'"></div>
+                </div>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto p-4 space-y-2 bg-navy">
+                <template x-for="(post, index) in posts" :key="index">
+                    <a href="#" @click.prevent="scrollTo(post.id)"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition border border-transparent"
+                        :class="{'bg-white/10 border-gold/30 shadow-inner': activePost === post.id}">
+                        <div
+                            class="flex flex-col items-center justify-center w-9 h-9 rounded bg-slate-800 text-[10px] font-bold uppercase tracking-wider shrink-0">
+                            <span class="text-gold" x-text="post.day"></span>
+                            <span class="text-slate-300" x-text="post.dateShort.split(' ')[0]"></span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium truncate text-slate-100" x-text="post.title"></p>
+                            <p class="text-[10px] text-slate-400 uppercase tracking-wider truncate" x-text="post.type">
+                            </p>
+                        </div>
+                        <div x-show="post.completed" class="text-gold">
+                            <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                        </div>
+                    </a>
+                </template>
+
+                <div class="hidden lg:block my-4 mx-4 border-t border-slate-700/50"></div>
+
+                <a href="planning_posts_paula.ics"
+                    class="flex items-center gap-3 p-3 mx-2 rounded-lg bg-gold/10 text-gold border border-gold/30 hover:bg-gold hover:text-navy transition group mb-6">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span class="font-bold text-sm">Télécharger Planning (ICS)</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-slate-50 relative">
+            <div class="max-w-5xl mx-auto p-6 lg:p-12 space-y-16 pb-32">
+
+                <!-- Header -->
+                <header class="glass rounded-2xl p-8 shadow-sm relative overflow-hidden border-l-4 border-l-gold">
+                    <h2 class="text-3xl font-bold text-navy mb-3">Bonjour Paula,</h2>
+                    <p class="text-slate-600 max-w-2xl leading-relaxed">
+                        Voici la campagne mise à jour. J'ai <strong>corrigé les liens images</strong> qui ne passaient
+                        pas.
+                        Toutes les variantes (Citations, Questions) sont accessibles via le sélecteur.
+                        <br><br>
+                        Le contenu reste 100% authentique et optimisé pour l'engagement.
+                    </p>
+                </header>
+
+                <template x-for="(post, index) in posts" :key="index">
+                    <article :id="post.id"
+                        class="relative pl-0 lg:pl-8 border-l-2 border-slate-200 transition-all duration-500"
+                        :class="{'opacity-50 grayscale': post.completed}">
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-[-5px] top-8 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_0_4px_rgba(243,244,246,1)] hidden lg:block transition"
+                            :class="{'bg-green-500': post.completed}"></div>
+
+                        <!-- Date Badge -->
+                        <div class="flex flex-wrap items-center gap-4 mb-4">
+                            <span
+                                class="text-sm font-bold text-navy bg-white px-3 py-1 rounded-full shadow-sm border border-slate-200"
+                                x-text="post.fullDate"></span>
+                            <span
+                                class="text-xs font-bold text-gold uppercase tracking-widest bg-gold/5 px-2 py-1 rounded"
+                                x-text="post.type"></span>
+                        </div>
+
+                        <!-- Card -->
+                        <div
+                            class="glass rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition hover:shadow-lg hover:border-gold/30">
+                            <div class="grid grid-cols-1 lg:grid-cols-12">
+
+                                <!-- Visual Section (5 cols) -->
+                                <div
+                                    class="lg:col-span-5 bg-slate-100 p-8 flex flex-col items-center justify-start relative border-b lg:border-b-0 lg:border-r border-slate-200 min-h-[400px]">
+
+                                    <!-- Image Display Logic -->
+                                    <div
+                                        class="relative w-full aspect-square max-w-[320px] shadow-xl rounded-lg overflow-hidden group/visual bg-white">
+
+                                        <!-- Main Image or Carousel Slide -->
+                                        <template x-for="(img, i) in (post.isCarousel ? post.slides : post.variants)"
+                                            :key="i">
+                                            <img :src="img"
+                                                x-show="(post.isCarousel ? post.currentSlide : post.currentVariant) === i"
+                                                x-transition:enter="transition ease-out duration-300"
+                                                x-transition:enter-start="opacity-0 scale-95"
+                                                x-transition:enter-end="opacity-100 scale-100"
+                                                x-transition:leave="transition ease-in duration-200"
+                                                x-transition:leave-start="opacity-100 scale-100"
+                                                x-transition:leave-end="opacity-0 scale-95"
+                                                class="absolute inset-0 w-full h-full object-cover">
+                                        </template>
+
+                                        <!-- Hover Download Overlay -->
+                                        <div
+                                            class="absolute inset-0 bg-navy/60 backdrop-blur-[2px] opacity-0 group-hover/visual:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-3">
+                                            <p
+                                                class="text-white text-sm font-medium translate-y-4 group-hover/visual:translate-y-0 transition duration-300">
+                                                Prêt à publier ?</p>
+                                            <a :href="(post.isCarousel ? post.slides[post.currentSlide] : post.variants[post.currentVariant])"
+                                                download
+                                                class="px-6 py-2 bg-gold text-navy font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition flex items-center gap-2 translate-y-4 group-hover/visual:translate-y-0 duration-500 cursor-pointer">
+                                                <i data-lucide="download" class="w-4 h-4"></i> Télécharger
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Controls -->
+                                    <div class="mt-6 flex items-center gap-4">
+
+                                        <!-- Carousel Controls -->
+                                        <template x-if="post.isCarousel">
+                                            <div class="flex gap-2">
+                                                <button
+                                                    @click="post.currentSlide = (post.currentSlide - 1 + post.slides.length) % post.slides.length"
+                                                    class="p-2 rounded-full border border-slate-300 hover:bg-white text-slate-600 transition">
+                                                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                                </button>
+                                                <span class="text-sm font-bold text-navy w-12 text-center"
+                                                    x-text="(post.currentSlide + 1) + '/' + post.slides.length"></span>
+                                                <button
+                                                    @click="post.currentSlide = (post.currentSlide + 1) % post.slides.length"
+                                                    class="p-2 rounded-full border border-slate-300 hover:bg-white text-slate-600 transition">
+                                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                                </button>
+                                            </div>
+                                        </template>
+
+                                        <!-- Variants Controls (Dots) -->
+                                        <template x-if="!post.isCarousel && post.variants.length > 1">
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div
+                                                    class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                                                    <span
+                                                        class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Variante</span>
+                                                    <div class="flex gap-1">
+                                                        <template x-for="(v, idx) in post.variants" :key="idx">
+                                                            <button @click="post.currentVariant = idx"
+                                                                class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                                                                :class="post.currentVariant === idx ? 'bg-gold scale-125' : 'bg-slate-300 hover:bg-slate-400'">
+                                                            </button>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                                <p class="text-[10px] text-slate-400">Essayez une autre option</p>
+                                            </div>
+                                        </template>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Content Section (7 cols) -->
+                                <div class="lg:col-span-7 p-6 md:p-8 flex flex-col bg-white h-full relative">
+
+                                    <!-- Platform Tabs -->
+                                    <div class="flex gap-6 mb-6 border-b border-slate-100 overflow-x-auto">
+                                        <template x-for="tab in ['instagram', 'facebook', 'linkedin']">
+                                            <button @click="post.activeTab = tab"
+                                                class="pb-3 text-xs font-bold uppercase tracking-wider transition border-b-2 shrink-0"
+                                                :class="post.activeTab === tab ? 'border-navy text-navy' : 'border-transparent text-slate-400 hover:text-slate-600'">
+                                                <span x-text="tab"></span>
+                                            </button>
+                                        </template>
+                                    </div>
+
+                                    <!-- Copy-Paste Area -->
+                                    <div class="flex-1 relative group/copy mb-6">
+                                        <div
+                                            class="absolute -right-2 -top-8 opacity-0 group-hover/copy:opacity-100 transition duration-300 pointer-events-none">
+                                            <div
+                                                class="bg-navy text-white text-[10px] py-1 px-2 rounded mb-1 mx-auto w-max shadow-sm">
+                                                Copier le texte</div>
+                                        </div>
+                                        <button @click="copyToClipboard(post.content[post.activeTab])"
+                                            class="absolute top-2 right-2 p-2 bg-white border border-slate-200 rounded-lg shadow-sm hover:border-gold hover:text-gold transition z-10 cursor-pointer">
+                                            <i data-lucide="copy" class="w-4 h-4"></i>
+                                        </button>
+                                        <div class="h-64 overflow-y-auto bg-slate-50 rounded-xl border border-slate-200 p-5 text-sm text-slate-700 leading-relaxed font-sans whitespace-pre-wrap outline-none focus:bg-white focus:border-gold/50 transition selection:bg-gold/20"
+                                            contenteditable="true" x-text="post.content[post.activeTab]"></div>
+                                    </div>
+
+                                    <!-- First Comment -->
+                                    <div
+                                        class="bg-indigo-50/50 rounded-lg border border-indigo-100 p-4 relative group/comment transition hover:bg-indigo-50">
+                                        <p
+                                            class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                            <i data-lucide="message-circle" class="w-3 h-3"></i> À poster en 1er
+                                            commentaire
+                                        </p>
+                                        <p class="text-sm text-slate-600 italic pr-8"
+                                            x-text="post.comments[post.activeTab]"></p>
+                                        <button @click="copyToClipboard(post.comments[post.activeTab])"
+                                            class="absolute top-3 right-3 text-indigo-300 hover:text-indigo-600 transition cursor-pointer">
+                                            <i data-lucide="copy" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- STRATEGY FOOTER -->
+                            <div
+                                class="bg-slate-900 border-t border-slate-800 p-5 flex flex-col md:flex-row gap-5 items-start md:items-center justify-between">
+                                <div class="flex gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 border border-slate-700 shadow-inner">
+                                        <i data-lucide="lightbulb" class="w-5 h-5 text-gold"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Clé
+                                            Cognitive</h4>
+                                        <p class="text-sm text-slate-200 max-w-xl leading-snug" x-html="post.strategy">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer group/check bg-slate-800 px-4 py-3 rounded-lg border border-slate-700 hover:border-gold/50 transition">
+                                    <input type="checkbox" x-model="post.completed" @change="saveProgress()"
+                                        class="w-4 h-4 text-gold rounded focus:ring-offset-slate-900 focus:ring-gold bg-slate-700 border-slate-600 cursor-pointer">
+                                    <span
+                                        class="text-sm font-medium text-slate-300 group-hover/check:text-white transition select-none">Marquer
+                                        comme fait</span>
+                                </label>
+                            </div>
+                        </div>
+                    </article>
+                </template>
+
+                <!-- EMAIL SECTION -->
+                <section id="emails-section" class="mt-16 pt-8 border-t-2 border-dashed border-slate-200">
+                    <header
+                        class="glass rounded-2xl p-8 shadow-sm relative overflow-hidden border-l-4 border-l-indigo-500 mb-8">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
+                                <i data-lucide="mail" class="w-6 h-6 text-indigo-600"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-navy">Envoi d'Emails</h2>
+                        </div>
+                        <p class="text-slate-600 max-w-2xl leading-relaxed">
+                            Sélectionne un template, modifie-le si besoin, et envoie-le directement dans ta boîte mail
+                            pour le transférer ensuite.
+                        </p>
+                    </header>
+
+                    <div class="glass rounded-2xl shadow-sm border border-slate-200 overflow-hidden"
+                        x-data="emailSender()">
+                        <div class="p-6 border-b border-slate-100 bg-slate-50">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- Template Selector -->
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Template</label>
+                                    <select x-model="selectedTemplate" @change="loadTemplate()"
+                                        class="w-full rounded-lg border-slate-200 bg-white focus:border-indigo-500 focus:ring-indigo-500">
+                                        <option value="">-- Choisir un template --</option>
+                                        <option value="bienvenue">Bienvenue</option>
+                                        <option value="atelier">Invitation Atelier</option>
+                                        <option value="relance">Relance</option>
+                                    </select>
+                                </div>
+                                <!-- Subject -->
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Objet
+                                        du mail</label>
+                                    <input type="text" x-model="subject" placeholder="Objet de l'email..."
+                                        class="w-full rounded-lg border-slate-200 bg-white focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                                <!-- Recipient -->
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Envoyer
+                                        à</label>
+                                    <input type="email" x-model="recipient" placeholder="ton@email.com"
+                                        class="w-full rounded-lg border-slate-200 bg-white focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preview / Editor -->
+                        <div class="p-6">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Aperçu
+                                (modifiable)</label>
+                            <div class="border border-slate-200 rounded-lg overflow-hidden bg-white"
+                                style="max-height: 500px; overflow-y: auto;">
+                                <iframe x-ref="emailPreview" class="w-full"
+                                    style="min-height: 400px; border: none;"></iframe>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2">Tu peux modifier directement le contenu dans l'aperçu
+                                avant d'envoyer.</p>
+                        </div>
+
+                        <!-- Send Button -->
+                        <div class="p-6 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-slate-500">
+                                <i data-lucide="info" class="w-4 h-4"></i>
+                                <span class="text-sm">L'email sera envoyé depuis
+                                    <strong>contact@paula.live.cercleonline.com</strong></span>
+                            </div>
+                            <button @click="sendEmail()" :disabled="sending || !recipient || !subject"
+                                class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4" x-show="!sending"></i>
+                                <svg x-show="sending" class="animate-spin h-4 w-4 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                <span x-text="sending ? 'Envoi...' : 'Envoyer le mail'"></span>
+                            </button>
+                        </div>
+
+                        <!-- Status Message -->
+                        <div x-show="statusMessage" x-transition class="p-4 text-center"
+                            :class="statusSuccess ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'">
+                            <span x-text="statusMessage"></span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div x-show="notification.show"
+        class="fixed bottom-8 right-8 z-50 bg-navy text-white pl-4 pr-6 py-3 rounded-lg shadow-2xl flex items-center gap-3 border border-slate-600"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-10 opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-10 opacity-0" x-cloak>
+        <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-navy shrink-0">
+            <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+        </div>
+        <span x-text="notification.message" class="font-medium text-sm"></span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function dashboard() {
+            return {
+                sidebarOpen: false,
+                activePost: null,
+                notification: { show: false, message: '' },
+
+                posts: [
+                    {
+                        id: 'post-1',
+                        day: 'Dim',
+                        dateShort: '28 Déc',
+                        fullDate: 'Dimanche 28 Décembre',
+                        title: 'La Question',
+                        type: 'Engagement',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/evergreen_question_trac.png',
+                            'images/evergreen_question_oser.png',
+                            'images/evergreen_question_silence.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Effet Zeigarnik :</strong> Une question ouverte crée une tension mentale que le cerveau veut résoudre.",
+                        content: {
+                            instagram: `Et si 2026 était l'année où vous osiez enfin libérer votre voix ?
+
+Qu'est-ce qui vous retient aujourd'hui ?
+
+La peur du regard des autres ?
+Le sentiment de ne pas être légitime ?
+Cette petite voix qui dit "ce n'est pas pour moi" ?
+
+« Ce n'est pas parce que les choses sont difficiles que nous n'osons pas, c'est parce que nous n'osons pas qu'elles sont difficiles. » — Sénèque
+
+Dites-moi en commentaire ce qui vous empêche de prendre la parole ou de chanter. Je lis chaque message.
+
+#voix #chant #prisedeparole #coaching #confianceensoi #artisanatdelavoix #nouvelan #2026 #paris14`,
+                            facebook: `Et si 2026 était l'année où vous osiez enfin libérer votre voix ?
+
+Qu'est-ce qui vous retient aujourd'hui ?
+
+La peur du regard des autres ?
+Le sentiment de ne pas être légitime ?
+Cette petite voix qui dit "ce n'est pas pour moi" ?
+
+« Ce n'est pas parce que les choses sont difficiles que nous n'osons pas, c'est parce que nous n'osons pas qu'elles sont difficiles. » — Sénèque
+
+J'aimerais vraiment savoir : qu'est-ce qui vous empêche de prendre la parole ou de chanter ? Partagez en commentaire, je lis tout.
+
+Les ateliers reprennent le 10 janvier au Centre Alésia, Paris 14e.`,
+                            linkedin: `Et si 2026 était l'année où vous osiez enfin prendre la parole ?
+
+Dans ma pratique de formatrice à l'ENA et de coach vocale, j'observe souvent la même chose : ce n'est pas le manque de compétence qui freine, c'est la peur.
+
+La peur du jugement.
+La peur de ne pas être à la hauteur.
+La peur de cette voix qui tremble.
+
+La bonne nouvelle, c'est que la voix se travaille. Le corps s'ancre. La confiance se construit.
+
+Et vous, qu'est-ce qui vous retient aujourd'hui ? Je serais curieuse de lire vos expériences en commentaire.`
+                        },
+                        comments: {
+                            instagram: `Les ateliers reprennent le samedi 10 janvier au Centre Alésia !
+Chant : 15h-16h30 | Prise de parole : 16h30-18h
+Lien dans ma bio ✨`,
+                            facebook: `Pour ceux qui hésitent encore : un cours d'essai est possible. N'hésitez pas à me contacter en message privé.`,
+                            linkedin: `Les ateliers Prise de Parole reprennent le samedi 10 janvier au Centre Alésia (Paris 14e). Plus d'infos sur mon site.`
+                        }
+                    },
+                    {
+                        id: 'post-carousel',
+                        day: 'Lun',
+                        dateShort: '29 Déc',
+                        fullDate: 'Lun 29 Déc - Dim 04 Jan (Semaine 1)',
+                        title: 'Carrousel 5 Raisons',
+                        type: 'Éducation',
+                        isCarousel: true,
+                        currentSlide: 0,
+                        slides: [
+                            'images/carousel_01_accroche.png',
+                            'images/carousel_02_stress.png',
+                            'images/carousel_03_confiance.png',
+                            'images/carousel_04_respirer.png',
+                            'images/carousel_05_energie.png',
+                            'images/carousel_05b_plaisir.png',
+                            'images/carousel_06_cta.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Valeur Perçue :</strong> Le carrousel est perçu comme un 'mini-livre' à forte valeur. Incite à la sauvegarde.",
+                        content: {
+                            instagram: `5 raisons de chanter au quotidien.
+
+Glissez pour découvrir →
+
+Chanter, ce n'est pas réservé aux professionnels.
+C'est un cadeau que vous vous faites.
+À votre corps. À votre esprit. À votre cœur.
+
+« La voix est l'interprète éloquent de l'esprit et du cœur. » — Edward Young
+
+Envie d'essayer ? 
+Les ateliers reprennent le 10 janvier.
+Lien en bio.
+
+#chant #bienetre #voix #respiration #confiance #energie #artisanatdelavoix #paris #2026`,
+                            facebook: `5 raisons de chanter au quotidien.
+
+1. Réduire le stress — Chanter active le nerf vague.
+2. Confiance en soi — Accepter sa voix, c'est s'accepter soi-même.
+3. Mieux respirer — Le chant développe la respiration profonde.
+4. Énergie — Vibrer, c'est recharger ses batteries.
+5. Plaisir partagé — Chanter ensemble crée un lien unique.
+
+« La voix est l'interprète éloquent de l'esprit et du cœur. » — Edward Young
+
+Envie d'essayer ?
+Atelier Chant : Samedi 10 janvier, 15h-16h30
+Centre Alésia, Paris 14e`,
+                            linkedin: `Pourquoi intégrer le chant dans votre routine ?
+
+Au-delà du plaisir, chanter a des bénéfices prouvés sur le bien-être et la performance :
+
+Réduction du stress — Le chant active le nerf vague et régule le système nerveux.
+Confiance en soi — Accepter sa voix, c'est apprendre à s'accepter.
+Respiration profonde — Le chant développe la capacité respiratoire.
+Énergie — Vibrer, c'est recharger ses batteries.
+
+Dans mes ateliers, je constate régulièrement que le travail vocal améliore aussi la prise de parole professionnelle.`
+                        },
+                        comments: {
+                            instagram: `Quelle raison vous parle le plus ? Dites-le en commentaire ! 👇`,
+                            facebook: `Le chant n'est pas réservé aux "bons chanteurs". Venez comme vous êtes.`,
+                            linkedin: `Le chant n'est pas réservé aux artistes. C'est un outil de développement personnel et professionnel.`
+                        }
+                    },
+                    {
+                        id: 'post-2',
+                        day: 'Mar',
+                        dateShort: '30 Déc',
+                        fullDate: 'Mardi 30 Décembre',
+                        title: 'Les 3 Signes',
+                        type: 'Expertise',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/evergreen_3signes_voix.png',
+                            'images/evergreen_conseil_muscle.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Effet Barnum :</strong> Le lecteur s'identifie aux symptômes précis ('voix fatiguée'). Cela crée une autorité immédiate.",
+                        content: {
+                            instagram: `3 signes que votre voix a besoin d'attention :
+
+1. Vous vous raclez souvent la gorge
+2. Votre voix fatigue en fin de journée
+3. Vous n'aimez pas vous entendre
+
+Ce n'est pas une fatalité.
+
+La voix est un muscle. Elle se travaille avec douceur, avec conscience, avec le corps tout entier.
+
+« Là où le discours en reste aux mots, la parole engage le corps. » — Jacques Lecoq
+
+La bonne nouvelle ? Tout se transforme quand on ose s'écouter vraiment.
+
+Reprise des ateliers le 10 janvier.
+Lien dans ma bio.
+
+#voix #bienetre #chant #coaching #corps #respiration #artisanatdelavoix #paris`,
+                            facebook: `3 signes que votre voix vous envoie un message :
+
+1. Vous vous raclez souvent la gorge
+2. Votre voix fatigue en fin de journée
+3. Vous n'aimez pas vous entendre
+
+La voix est un muscle. Elle se travaille avec douceur, avec conscience, avec le corps tout entier.
+
+En 2026, prenez soin de votre instrument le plus précieux.
+
+Reprise des ateliers le samedi 10 janvier au Centre Alésia.
+Chant : 15h-16h30
+Prise de parole : 16h30-18h`,
+                            linkedin: `Votre voix vous envoie peut-être des signaux que vous ignorez.
+
+3 signes à surveiller :
+
+Vous vous raclez souvent la gorge avant de parler
+Votre voix fatigue après une réunion
+Vous évitez de prendre la parole en public
+
+Dans le monde professionnel, la voix est votre premier outil de communication. Et pourtant, combien d'entre nous y prêtent vraiment attention ?
+
+La technique vocale n'est pas réservée aux artistes. C'est une compétence qui se travaille.`
+                        },
+                        comments: {
+                            instagram: `Si vous vous reconnaissez dans un de ces signes, c'est peut-être le moment d'offrir un peu d'attention à votre voix.`,
+                            facebook: `Tous niveaux acceptés. L'important n'est pas d'où vous partez, mais d'oser commencer.`,
+                            linkedin: `Les ateliers "Prise de Parole en Public" reprennent le 10 janvier à Paris. Formation basée sur les techniques théâtrales.`
+                        }
+                    },
+                    {
+                        id: 'post-3',
+                        day: 'Jeu',
+                        dateShort: '02 Jan',
+                        fullDate: 'Jeudi 02 Janvier',
+                        title: 'Bonne Année',
+                        type: 'Nouvel An',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/campagne_nouvelan_2026.png',
+                            'images/post_02jan_nouvelan.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Effet Fresh Start :</strong> Le début d'année est idéal pour transformer un vœu abstrait en action concrète.",
+                        content: {
+                            instagram: `2026 : L'année où vous prenez la parole ?
+
+Nouvelle année, nouvelle voix ?
+
+Quelle est votre résolution vocale cette année ?
+
+A. Apprendre à chanter (enfin !)
+B. Oser prendre la parole en public
+C. Les deux !
+
+Votez A, B ou C en commentaire.
+
+« La voix est l'interprète éloquent de l'esprit et du cœur. » — Edward Young
+
+La reprise, c'est le samedi 10 janvier.
+On s'y retrouve ?
+
+#2026 #nouvelan #resolutions #voix #chant #prisedeparole #paris #artisanatdelavoix`,
+                            facebook: `Bonne année 2026 !
+
+Et si cette année était celle où vous osiez enfin libérer votre voix ?
+
+Quelle est votre résolution vocale ?
+
+A. Apprendre à chanter (enfin !)
+B. Oser prendre la parole en public
+C. Les deux !
+
+Dites-moi en commentaire.
+
+La reprise des ateliers, c'est le samedi 10 janvier au Centre Alésia.`,
+                            linkedin: `Bonne année 2026 à tous.
+
+Au-delà des vœux traditionnels, j'aimerais vous poser une question :
+
+Quelle place donnez-vous à votre voix cette année ?
+
+Dans notre monde professionnel, savoir s'exprimer clairement, avec présence et conviction, n'est plus une option. C'est une compétence clé.
+
+Ma résolution pour 2026 : continuer à accompagner ceux qui veulent transformer leur rapport à la parole.`
+                        },
+                        comments: {
+                            instagram: `Atelier Chant (15h-16h30) | Prise de Parole (16h30-18h)
+Centre Alésia, Paris 14e. Tous niveaux.`,
+                            facebook: `Je vous souhaite une année remplie de vibrations, de présence et de confiance. Prenez soin de vous.`,
+                            linkedin: `J'interviens également en entreprise. N'hésitez pas à me contacter pour plus d'informations.`
+                        }
+                    },
+                    {
+                        id: 'post-4',
+                        day: 'Dim',
+                        dateShort: '04 Jan',
+                        fullDate: 'Dimanche 04 Janvier',
+                        title: 'Parole Claire',
+                        type: 'Inspiration',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/evergreen_citation_parole.png',
+                            'images/evergreen_citation_lecoq.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Autorité Bienveillante :</strong> Une citation forte positionne votre expertise. On éduque sur l'importance de l'intention.",
+                        content: {
+                            instagram: `« Sachez porter une parole claire. »
+
+La clarté de votre message commence par la clarté de votre intention.
+
+Qu'avez-vous vraiment envie de transmettre ?
+
+Avant de chercher les bons mots, posez-vous cette question essentielle.
+
+Le reste suivra : le ton, le rythme, les silences...
+
+Atelier Prise de Parole en Public
+Samedi 10 janvier, 16h30-18h
+Centre Alésia, Paris 14e
+
+#prisedeparole #communication #confianceensoi #coaching #parole #paris #formation`,
+                            facebook: `« Sachez porter une parole claire. »
+
+La clarté de votre message commence par la clarté de votre intention.
+
+Qu'avez-vous vraiment envie de transmettre ?
+
+Avant de chercher les bons mots, posez-vous cette question essentielle. Le reste suivra naturellement.
+
+Atelier Prise de Parole en Public
+Samedi 10 janvier, 16h30-18h
+Centre Alésia, Paris 14e`,
+                            linkedin: `« Sachez porter une parole claire. »
+
+Dans mes formations à la prise de parole, je commence souvent par cette question :
+
+Qu'avez-vous vraiment envie de transmettre ?
+
+Pas ce que vous devez dire.
+Pas ce qu'on attend de vous.
+Mais ce que VOUS voulez faire passer.
+
+La clarté du message commence par la clarté de l'intention.
+Une fois cette intention posée, le corps s'aligne et les mots viennent.`
+                        },
+                        comments: {
+                            instagram: `L'atelier est basé sur les techniques théâtrales. Tous niveaux acceptés. Inscriptions via le lien en bio.`,
+                            facebook: `Si vous avez une présentation ou un discours important en 2026, cet atelier est fait pour vous.`,
+                            linkedin: `Formation basée sur les techniques de l'art dramatique et lyrique. Plus d'infos sur paulamesuret.com`
+                        }
+                    },
+                    {
+                        id: 'post-5',
+                        day: 'Mar',
+                        dateShort: '06 Jan',
+                        fullDate: 'Mardi 06 Janvier',
+                        title: 'Corps Enraciné',
+                        type: 'Confiance',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/evergreen_conseil_ancrage.png',
+                            'images/evergreen_citation_confiance.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Connexion Somatique :</strong> Ramener l'attention au corps permet de calmer le mental et le stress.",
+                        content: {
+                            instagram: `« Un corps enraciné, c'est une présence physique, c'est le gage d'une confiance en soi. »
+
+Votre voix commence dans vos pieds.
+
+Dans votre ancrage au sol.
+Dans votre souffle.
+Dans votre centre.
+
+Avant de parler, posez-vous.
+Sentez vos appuis.
+Respirez.
+
+Puis, seulement, laissez la voix monter.
+
+Samedi 10 janvier, on travaille ça ensemble.
+Centre Alésia, Paris 14e
+
+#confiance #presence #corps #voix #ancrage #prisedeparole #chant #paris`,
+                            facebook: `« Un corps enraciné, c'est une présence physique, c'est le gage d'une confiance en soi. »
+
+Votre voix commence dans vos pieds.
+Dans votre ancrage au sol.
+Dans votre souffle.
+
+Avant de parler, avant de chanter, posez-vous. Sentez vos appuis. Respirez profondément.
+
+Puis, seulement, laissez la voix monter.
+
+Samedi 10 janvier, on travaille ça ensemble.
+Centre Alésia, Paris 14e`,
+                            linkedin: `« Un corps enraciné, c'est une présence physique, c'est le gage d'une confiance en soi. »
+
+Combien de fois avez-vous vu quelqu'un perdre ses moyens lors d'une présentation ?
+
+Le souffle qui s'accélère.
+Les mains qui tremblent.
+
+Ce n'est pas un problème de compétence. C'est un problème d'ancrage.
+
+La confiance ne vient pas de ce que vous savez.
+Elle vient de comment vous êtes présent.`
+                        },
+                        comments: {
+                            instagram: `Chant : 15h-16h30 | Prise de parole : 16h30-18h
+Cours d'essai possible. Tous niveaux.`,
+                            facebook: `L'ancrage est la base de tout. Une fois les pieds bien posés, le stress diminue naturellement et la voix se libère.`,
+                            linkedin: `Les ateliers reprennent le 10 janvier. Formation basée sur les techniques théâtrales.`
+                        }
+                    },
+                    {
+                        id: 'post-6',
+                        day: 'Jeu',
+                        dateShort: '08 Jan',
+                        fullDate: 'Jeudi 08 Janvier',
+                        title: 'J-2 Rappel',
+                        type: 'Urgence',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/template_rappel_atelier.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Urgence Douce :</strong> Un rappel factuel qui incite les derniers indécis à passer à l'action.",
+                        content: {
+                            instagram: `J-2 !
+
+SAMEDI 10 JANVIER
+Reprise des ateliers L'Artisanat de la Voix
+
+Atelier Chant
+15h00 - 16h30
+Retrouvez votre voix, votre souffle, votre plaisir de chanter.
+
+Prise de Parole en Public
+16h30 - 18h00
+Ancrage, présence, confiance. Osez prendre la parole.
+
+Centre Alésia
+119 Av. du Général Leclerc, Paris 14e
+
+Il reste quelques places.
+Première séance ? Cours d'essai possible.
+
+Lien en bio ou message privé.
+
+#ateliers #chant #prisedeparole #paris14 #alesia #janvier2026`,
+                            facebook: `Plus que 2 jours !
+
+SAMEDI 10 JANVIER
+Reprise des ateliers L'Artisanat de la Voix
+
+Atelier Chant : 15h00 - 16h30
+Prise de Parole en Public : 16h30 - 18h00
+
+Centre de Danse Alésia
+119 Av. du Général Leclerc, 75014 Paris
+Métro Porte d'Orléans
+
+Il reste quelques places.
+Première séance ? Cours d'essai possible à 35€.
+
+06 79 88 66 90
+paulamesuret.com`,
+                            linkedin: `J-2 : Reprise des ateliers Prise de Parole
+
+Ce samedi 10 janvier, je reprends les ateliers au Centre Alésia à Paris.
+
+Prise de Parole en Public : 16h30 - 18h00
+
+Au programme :
+Techniques d'ancrage et de respiration
+Gestion du stress avant une intervention
+Travail sur la voix, le regard, les silences
+
+Que vous ayez une présentation importante, un pitch à préparer ou simplement envie de gagner en présence : cet atelier est fait pour vous.`
+                        },
+                        comments: {
+                            instagram: `Vous hésitez encore ? Envoyez-moi un message, je réponds à toutes vos questions.`,
+                            facebook: `Les 35€ du cours d'essai sont déductibles si vous vous inscrivez ensuite au trimestre.`,
+                            linkedin: `J'interviens également en entreprise et en formation continue (ENA, écoles d'avocats).`
+                        }
+                    },
+                    {
+                        id: 'post-7',
+                        day: 'Sam',
+                        dateShort: '10 Jan',
+                        fullDate: 'Samedi 10 Janvier',
+                        title: 'JOUR J !',
+                        type: 'Jour J',
+                        isCarousel: false,
+                        currentVariant: 0,
+                        variants: [
+                            'images/template_jourj_atelier.png'
+                        ],
+                        activeTab: 'instagram',
+                        completed: false,
+                        strategy: "<strong>Preuve Sociale :</strong> Montrer que c'est le grand jour valide l'événement et l'activité.",
+                        content: {
+                            instagram: `C'EST AUJOURD'HUI !
+
+Reprise des ateliers L'Artisanat de la Voix.
+
+Chant : 15h00
+Prise de Parole : 16h30
+Centre Alésia, Paris 14e
+
+On vous attend !
+
+Dernière minute ?
+Envoyez-moi un message.
+
+« Ce n'est pas parce que les choses sont difficiles que nous n'osons pas, c'est parce que nous n'osons pas qu'elles sont difficiles. » — Sénèque
+
+Osez.
+
+#jourj #reprise #ateliers #chant #prisedeparole #voix #paris #artisanatdelavoix`,
+                            facebook: `C'EST AUJOURD'HUI !
+
+Reprise des ateliers L'Artisanat de la Voix.
+
+Atelier Chant : 15h00
+Prise de Parole : 16h30
+Centre de Danse Alésia
+119 Av. du Général Leclerc, Paris 14e
+
+On vous attend !
+
+Dernière minute ? Envoyez-moi un message ou appelez-moi au 06 79 88 66 90.
+
+« Ce n'est pas parce que les choses sont difficiles que nous n'osons pas, c'est parce que nous n'osons pas qu'elles sont difficiles. » — Sénèque
+
+Osez.`,
+                            linkedin: `C'est aujourd'hui !
+
+Les ateliers "Prise de Parole en Public" reprennent ce samedi 10 janvier au Centre Alésia à Paris.
+
+Si vous avez envie de :
+Gagner en présence lors de vos interventions
+Gérer votre stress
+Trouver votre voix
+
+C'est le moment d'oser.`
+                        },
+                        comments: {
+                            instagram: `Merci à tous ceux qui nous rejoignent aujourd'hui. Le premier pas est le plus beau.`,
+                            facebook: `Hâte de vous retrouver ou de vous rencontrer ! La voix est un voyage.`,
+                            linkedin: `Merci à tous ceux qui nous rejoignent. Le voyage vers votre vraie voix commence aujourd'hui.`
+                        }
+                    }
+                ],
+
+                init() {
+                    const savedState = localStorage.getItem('paula_dashboard_state_v5');
+                    this.activePost = this.posts[0].id;
+                    if (savedState) {
+                        const parsed = JSON.parse(savedState);
+                        this.posts.forEach((post, i) => {
+                            if (parsed[post.id]) {
+                                post.completed = parsed[post.id];
+                            }
+                        });
+                    }
+                },
+
+                get progress() {
+                    const completed = this.posts.filter(p => p.completed).length;
+                    return Math.round((completed / this.posts.length) * 100);
+                },
+
+                saveProgress() {
+                    const state = {};
+                    this.posts.forEach(p => { state[p.id] = p.completed; });
+                    localStorage.setItem('paula_dashboard_state_v5', JSON.stringify(state));
+
+                    if (this.progress === 100) {
+                        this.notification.message = 'Félicitations ! Votre campagne est prête ! 🎉';
+                        this.notification.show = true;
+                        setTimeout(() => this.notification.show = false, 4000);
+                    }
+                },
+
+                scrollTo(id) {
+                    this.activePost = id;
+                    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (window.innerWidth < 1024) this.sidebarOpen = false;
+                },
+
+                copyToClipboard(text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        this.notification.message = 'Texte copié !';
+                        this.notification.show = true;
+                        setTimeout(() => this.notification.show = false, 2000);
+                    });
+                }
+            }
+        }
+
+        // Email Sender Component
+        function emailSender() {
+            return {
+                selectedTemplate: '',
+                subject: '',
+                recipient: '',
+                sending: false,
+                statusMessage: '',
+                statusSuccess: false,
+                templates: {
+                    bienvenue: { url: 'emails/email_1_bienvenue.html', subject: 'Bienvenue chez Paula Mesuret' },
+                    atelier: { url: 'emails/email_2_atelier.html', subject: 'Osez votre voix ce Samedi !' },
+                    relance: { url: 'emails/email_3_relance.html', subject: 'Des nouvelles de Paula' }
+                },
+
+                loadTemplate() {
+                    if (!this.selectedTemplate) return;
+                    const template = this.templates[this.selectedTemplate];
+                    this.subject = template.subject;
+
+                    fetch(template.url)
+                        .then(res => res.text())
+                        .then(html => {
+                            const iframe = this.$refs.emailPreview;
+                            iframe.srcdoc = html;
+                            iframe.onload = () => {
+                                iframe.contentDocument.designMode = 'on';
+                            };
+                        })
+                        .catch(err => {
+                            this.statusMessage = 'Erreur lors du chargement du template';
+                            this.statusSuccess = false;
+                        });
+                },
+
+                async sendEmail() {
+                    if (!this.recipient || !this.subject) return;
+
+                    this.sending = true;
+                    this.statusMessage = '';
+
+                    const iframe = this.$refs.emailPreview;
+                    const htmlContent = iframe.contentDocument.documentElement.outerHTML;
+
+                    try {
+                        const response = await fetch('send_email.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                to: this.recipient,
+                                subject: this.subject,
+                                html: htmlContent
+                            })
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            this.statusMessage = '✅ ' + result.message;
+                            this.statusSuccess = true;
+                        } else {
+                            this.statusMessage = '❌ ' + result.error;
+                            this.statusSuccess = false;
+                        }
+                    } catch (err) {
+                        this.statusMessage = '❌ Erreur réseau. Vérifiez votre connexion.';
+                        this.statusSuccess = false;
+                    }
+
+                    this.sending = false;
+                    setTimeout(() => this.statusMessage = '', 5000);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

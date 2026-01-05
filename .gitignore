@@ -1,11 +1,12 @@
 # Ignore everything by default
 *
 
-# Unignore directories (so we can unignore files inside them)
+# Unignore directories
 !*/
 
 # Unignore specific frontend files
 !index.html
+!dashboard.html
 !nixpacks.toml
 !.gitignore
 
