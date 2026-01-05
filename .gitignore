@@ -10,6 +10,10 @@
 !nixpacks.toml
 !.gitignore
 
+# Unignore backend/mailer file
+!*.php
+!emails/**
+
 # Unignore assets directories content
 !js/**
 !css/**
