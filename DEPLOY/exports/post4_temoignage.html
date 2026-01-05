@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { "primary": "#C59217", "background-dark": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } }
+        }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <div class="w-[1080px] h-[1080px] bg-[#0D1B24] text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+        
+        <div class="absolute inset-0 p-24 flex flex-col justify-center">
+            <div class="w-40 h-40 bg-[#C59217]/20 rounded-full flex items-center justify-center text-[#C59217] text-6xl font-bold mb-12 border-2 border-[#C59217]">
+                C
+            </div>
+            
+            <div class="flex gap-2 mb-10 text-[#C59217] text-4xl">
+                ★ ★ ★ ★ ★
+            </div>
+            
+            <h2 class="text-5xl font-light italic leading-snug mb-16 text-gray-200">
+                "Au début, j'avais juste envie d'apprendre à chanter... Paula m'a fait découvrir que la voix est l'instrument du cœur."
+            </h2>
+            
+            <div>
+                <p class="text-3xl font-bold text-white">Cyndie P.</p>
+                <p class="text-2xl text-[#C59217] mt-2">Chanteuse Amateur, Paris</p>
+            </div>
+        </div>
+        
+        <img src="../img/logo.png" class="absolute bottom-10 right-10 w-32 opacity-50" alt="Logo">
+    </div>
+</body>
+</html>

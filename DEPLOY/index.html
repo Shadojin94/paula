@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>L'Artisanat de la Voix - Paula Mesuret</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C59217",
+                        "primary-dark": "#A67B14",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0D1B24",
+                        "text-main": "#0d1b12",
+                        "text-secondary": "#1D6399",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* GPU Performance Hints */
+        .reveal-item {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .bg-grain {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDaHmFa7sdBcx0qSEU7YIuz6wg5uUDclVVdhgpS7F8hRf9U0cNpPMDHaP4XPNejuph_yDPZQJAF-ZUVZgwmnmVnQSrRgs11WzTUWkjTFR7jB4-R4iqVLt9-kbBbQl5cj3Nhj-ZeBgXo8MYBpJJuADIE2hXk_dHi8VumARABO_s0otGP8PneIa5eQSWTIwd-ThFg8Cf4X2NALvWR8AlAobHBmg5zJcfsvhS4hv2m3LHIx2Bur4Vrizr4d38301hTOFf-VKPo9g7N96G-);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        .clip-text-image {
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased overflow-x-hidden">
+
+    <!-- HEADER (Merged from Courses/Contact) -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-[#e7f3eb] dark:border-[#1e3a29] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
+        <div class="px-4 md:px-10 py-3 flex items-center justify-between max-w-7xl mx-auto">
+            <a href="#accueil" class="flex items-center gap-4">
+                <img src="img/logo.png" alt="Logo" class="h-10 w-auto brightness-0 invert">
+                <h2 class="text-lg font-bold leading-tight tracking-tight">L'Artisanat de la Voix</h2>
+            </a>
+            <nav class="hidden md:flex items-center gap-9">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#accueil">Accueil</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#ateliers">Ateliers</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#approche">Mon Approche</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#temoignages">Témoignages</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+            </nav>
+            <a href="https://wa.me/33679886690" target="_blank"
+                class="hidden md:flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-opacity-90 transition-colors text-[#0d1b12] text-sm font-bold shadow-sm">
+                Discussion Directe
+            </a>
+            <button class="md:hidden text-[#0d1b12] dark:text-[#f8fcf9]">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION (Positive & Authentic) -->
+        <section id="accueil" class="relative w-full py-16 md:py-24 px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <div class="w-full md:w-1/2 relative group reveal-item">
+                    <div
+                        class="absolute inset-0 bg-primary/20 rounded-[2rem] rotate-3 transform transition-transform group-hover:rotate-6">
+                    </div>
+                    <div class="relative w-full aspect-[4/5] md:aspect-square bg-cover bg-center rounded-[2rem] shadow-xl overflow-hidden"
+                        style='background-image: url("img/paula-portrait.png");'>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col gap-6 reveal-item delay-100">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 w-fit">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-wide text-primary">Coach Vocale &
+                            Présence</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight">
+                        Libérez Votre <br />
+                        <span class="relative">
+                            Résonance
+                            <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary" preserveAspectRatio="none"
+                                viewBox="0 0 100 10">
+                                <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="3"></path>
+                            </svg>
+                        </span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                        Des scènes de <span class="font-medium text-[#0d1b12]">Chaillot</span> aux couloirs de l'<span
+                            class="font-medium text-[#0d1b12]">ENA</span>, j'accompagne chaque participant vers sa
+                        propre vérité vocale.
+                    </p>
+                    <p class="text-base text-gray-500 leading-relaxed">
+                        Je m'appelle Paula Mesuret. Mon approche est celle de l'artisanat : patiente, organique et
+                        profondément humaine. Ici, on ne fabrique pas une voix, on la libère.
+                    </p>
+                    <div class="pt-4">
+                        <a href="#approche"
+                            class="flex items-center justify-center rounded-xl h-12 px-8 bg-blue-600 hover:bg-blue-700 transition-colors text-white text-base font-bold shadow-md w-fit">
+                            Découvrez Mon Parcours
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHILOSOPHY SECTION (Transformation Focus) -->
+        <section id="approche" class="w-full bg-white dark:bg-[#152b1d] py-20 bg-grain border-y border-[#e7f3eb]">
+            <div class="max-w-7xl mx-auto px-4 md:px-10">
+                <div class="text-center mb-16 max-w-3xl mx-auto reveal-item">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">L'Approche de la Vibration Humaine</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Une invitation à incarner pleinement votre parole. Nous travaillons sur la résonance, l'ancrage
+                        et l'autorisation d'être soi.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Cards with Positive Framing -->
+                    <div
+                        class="bg-background-light p-8 rounded-2xl border border-[#e7f3eb] hover:border-primary/50 transition-all hover:-translate-y-1 group reveal-item delay-100">
+                        <div
+                            class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">self_improvement</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Authenticité</h3>
+                        <p class="text-gray-500 leading-relaxed">Oser être soi-même, sans masque. Retrouver le plaisir
+                            simple de la connexion humaine.</p>
+                    </div>
+                    <div
+                        class="bg-background-light p-8 rounded-2xl border border-[#e7f3eb] hover:border-primary/50 transition-all hover:-translate-y-1 group reveal-item delay-200">
+                        <div
+                            class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">graphic_eq</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Résonance</h3>
+                        <p class="text-gray-500 leading-relaxed">Trouver la voix qui vibre naturellement dans votre
+                            corps. Une approche par le ressenti.</p>
+                    </div>
+                    <div
+                        class="bg-background-light p-8 rounded-2xl border border-[#e7f3eb] hover:border-primary/50 transition-all hover:-translate-y-1 group reveal-item delay-300">
+                        <div
+                            class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">theater_comedy</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Bienveillance</h3>
+                        <p class="text-gray-500 leading-relaxed">La discipline de l'art lyrique au service de votre
+                            épanouissement personnel, en toute sécurité.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COURSES SECTION (Updated Pricing & Schedule) -->
+        <section id="ateliers" class="py-20 px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal-item">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos Ateliers Hebdomadaires</h2>
+                <p class="text-text-secondary">Deux parcours complémentaires pour chaque participant.</p>
+            </div>
+
+            <div class="grid gap-12">
+                <!-- Course Item 1: Chant -->
+                <div
+                    class="bg-white rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#e7f3eb] flex flex-col lg:flex-row gap-8 lg:items-stretch group hover:border-primary/30 transition-colors reveal-item delay-100 will-change-transform">
+                    <div class="lg:w-1/3 shrink-0">
+                        <div class="h-64 lg:h-full rounded-xl overflow-hidden relative">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                src="img/chant.webp" />
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur text-text-main px-3 py-1 rounded-lg text-sm font-bold shadow-sm flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-lg">music_note</span>
+                                Chant
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between gap-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-text-main mb-3">L'Exploration Musicale</h3>
+                            <p class="text-text-secondary mb-6 leading-relaxed">
+                                "À la rencontre de sa voix". Retrouvez la spontanéité du geste vocal. On travaille
+                                l'oreille, l'intuition et l'appui sur le cœur.
+                            </p>
+                            <div
+                                class="bg-background-light rounded-xl p-5 border border-[#cfe7d7]/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">calendar_today</span>
+                                        <div>
+                                            <p class="text-xs text-text-secondary uppercase font-semibold">Horaire</p>
+                                            <p class="text-sm font-medium text-text-main">Samedi 15h00 - 16h30</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">payments</span>
+                                        <div>
+                                            <p class="text-xs text-text-secondary uppercase font-semibold">Tarif
+                                                Trimestriel (9 Cours)</p>
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-lg font-bold text-text-main">350€</p>
+                                                <span
+                                                    class="text-xs text-text-secondary bg-primary/10 px-2 py-0.5 rounded-full">Essai
+                                                    35€ déduit</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="openModal('Chant')"
+                                    class="w-full md:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-primary-dark text-[#0d1b12] font-bold transition-all shadow-lg hover:shadow-primary/30 active:scale-95">
+                                    S'inscrire / Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Item 2: Prise de Parole -->
+                <div
+                    class="bg-white rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#e7f3eb] flex flex-col lg:flex-row gap-8 lg:items-stretch group hover:border-primary/30 transition-colors reveal-item delay-200 will-change-transform">
+                    <div class="lg:w-1/3 shrink-0">
+                        <div class="h-64 lg:h-full rounded-xl overflow-hidden relative">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                src="img/prisedeparole.jpg" />
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur text-text-main px-3 py-1 rounded-lg text-sm font-bold shadow-sm flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-lg">record_voice_over</span>
+                                Prise de Parole
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between gap-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-text-main mb-3">L'Art de l'Éloquence</h3>
+                            <p class="text-text-secondary mb-6 leading-relaxed">
+                                Transformez le stress en charisme. Apprenez à porter une parole apaisée et à habiter vos
+                                silences. Pour les participants en quête d'impact.
+                                <span class="block mt-2 text-sm text-primary font-medium">ENA, Écoles d'avocats (EFB,
+                                    EDA ALIÉNOR)</span>
+                            </p>
+                            <div
+                                class="bg-background-light rounded-xl p-5 border border-[#cfe7d7]/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">calendar_today</span>
+                                        <div>
+                                            <p class="text-xs text-text-secondary uppercase font-semibold">Horaire</p>
+                                            <p class="text-sm font-medium text-text-main">Samedi 16h30 - 18h00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">payments</span>
+                                        <div>
+                                            <p class="text-xs text-text-secondary uppercase font-semibold">Tarif
+                                                Trimestriel (9 Cours)</p>
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-lg font-bold text-text-main">350€</p>
+                                                <span
+                                                    class="text-xs text-text-secondary bg-primary/10 px-2 py-0.5 rounded-full">Essai
+                                                    35€ déduit</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="openModal('Prise de Parole')"
+                                    class="w-full md:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-primary-dark text-[#0d1b12] font-bold transition-all shadow-lg hover:shadow-primary/30 active:scale-95">
+                                    S'inscrire / Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION (Card Grid) -->
+        <section id="temoignages" class="py-20 bg-gray-50 border-y border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 md:px-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Témoignages</h2>
+                    <p class="text-gray-500">Ce qu'ils disent de leur transformation.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Testimonial 1 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">format_quote</span>
+                        <p class="text-gray-700 leading-relaxed mb-6">"Dynamique, sympathique, ambiance conviviale, et
+                            toutes les techniques d'une vraie professionnelle pour faire grandir la voix au plus haut !"
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                A</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Alexandra A.</h4>
+                                <p class="text-xs text-gray-400">choriste, Massy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">format_quote</span>
+                        <p class="text-gray-700 leading-relaxed mb-6">"Au début, j'avais juste envie d'apprendre à
+                            chanter... Paula m'a fait découvrir que la voix est l'instrument du corps... et du cœur."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                C</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Cyndie P.</h4>
+                                <p class="text-xs text-gray-400">chanteuse amateur, Paris</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">format_quote</span>
+                        <p class="text-gray-700 leading-relaxed mb-6">"Paula m'a prouvé que je pouvais avoir confiance
+                            en ma voix, c'est indispensable quand on veut convaincre un large public."</p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                D</div>
+                            <div>
+                                <h4 class="font-bold text-sm">David M.</h4>
+                                <p class="text-xs text-gray-400">40 ans, Paris</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-4 block">format_quote</span>
+                        <p class="text-gray-700 leading-relaxed mb-6">"J'ai passé mes oraux de langues pour le Bac sans
+                            avoir le trac... Merci Paula !!!"</p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                L</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Louise J.</h4>
+                                <p class="text-xs text-gray-400">17 ans, Saclay</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION (Benevolent & Reassuring) -->
+        <section id="faq" class="py-20 px-4 md:px-10 max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Questions Fréquentes</h2>
+                <p class="text-gray-500">Tout ce que vous devez savoir avant de commencer.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden">
+                    <button
+                        class="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors text-left"
+                        onclick="toggleFAQ(this)">
+                        <span class="font-bold text-lg text-[#0d1b12]">Je n'ai jamais chanté, est-ce pour moi ?</span>
+                        <span
+                            class="material-symbols-outlined transform transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="hidden px-6 pb-6 bg-white text-gray-600 bg-background-light/30">
+                        Absolument. Mon approche est basée sur la découverte et le ressenti, pas sur la performance. Que
+                        vous soyez débutant ou confirmé, nous travaillons sur *votre* instrument unique.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden">
+                    <button
+                        class="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors text-left"
+                        onclick="toggleFAQ(this)">
+                        <span class="font-bold text-lg text-[#0d1b12]">Comment se déroule un cours d'essai ?</span>
+                        <span
+                            class="material-symbols-outlined transform transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="hidden px-6 pb-6 bg-white text-gray-600 bg-background-light/30">
+                        C'est une séance de rencontre. Nous échangeons sur vos attentes, puis nous passons à quelques
+                        exercices simples pour évaluer votre tessiture et votre confort. C'est sans engagement.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden">
+                    <button
+                        class="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors text-left"
+                        onclick="toggleFAQ(this)">
+                        <span class="font-bold text-lg text-[#0d1b12]">Puis-je changer d'atelier en cours d'année
+                            ?</span>
+                        <span
+                            class="material-symbols-outlined transform transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="hidden px-6 pb-6 bg-white text-gray-600 bg-background-light/30">
+                        Oui, si des places sont disponibles. La passerelle entre le Chant et la Prise de Parole est
+                        fluide, car les fondamentaux (souffle, ancrage) sont les mêmes.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL (Updated with Forms) -->
+        <div id="course-modal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl scale-95 transition-transform duration-300 transform max-h-[90vh] overflow-y-auto"
+                id="modal-content">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-[#0d1b12]">Inscription</h3>
+                    <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Vous avez choisi <span id="modal-course-name" class="font-bold text-primary-dark">le cours</span>.
+                    Comment souhaitez-vous procéder ?
+                </p>
+
+                <div class="grid gap-6">
+                    <!-- Option A: WhatsApp with Message Builder -->
+                    <div class="border border-[#25D366]/30 rounded-xl p-4 bg-[#25D366]/5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="material-symbols-outlined text-[#128C7E]">chat</span>
+                            <span class="font-bold text-[#075E54]">Discussion Directe</span>
+                        </div>
+                        <textarea id="whatsapp-message-input" rows="2"
+                            placeholder="Bonjour Paula, j'ai une question sur..."
+                            class="w-full text-sm p-3 rounded-lg border-gray-200 focus:border-[#25D366] focus:ring-[#25D366] mb-3 resize-none bg-white"></textarea>
+                        <a id="modal-whatsapp-btn" href="#" target="_blank"
+                            class="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#25D366] hover:bg-[#128C7E] text-white font-bold transition-all shadow-md">
+                            Ouvrir WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="relative flex items-center">
+                        <div class="flex-grow border-t border-gray-200"></div>
+                        <span class="flex-shrink-0 mx-4 text-gray-400 text-xs uppercase tracking-widest">OU</span>
+                        <div class="flex-grow border-t border-gray-200"></div>
+                    </div>
+
+                    <!-- Option B: Form / ICS -->
+                    <div>
+                        <button onclick="toggleModalForm()"
+                            class="flex items-center gap-4 p-4 rounded-xl bg-blue-50 border border-blue-100 hover:bg-blue-100 transition-all group text-left w-full">
+                            <div
+                                class="bg-blue-600 text-white p-3 rounded-full group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">event_available</span>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-blue-900 text-lg">S'inscrire au cours d'essai</span>
+                                <span class="text-sm text-blue-800/80">Bloquer ma place (Fichier Agenda)</span>
+                            </div>
+                        </button>
+
+                        <!-- Hidden Form inside Modal -->
+                        <div id="modal-form-container"
+                            class="hidden mt-4 pt-4 border-t border-gray-100 animate-fade-in-down">
+                            <form id="modal-booking-form" class="flex flex-col gap-3">
+                                <input type="hidden" id="modal-course-input" name="course_type">
+
+                                <!-- Date Picker (Required) -->
+                                <div>
+                                    <label class="text-xs font-bold uppercase text-gray-500 tracking-wider">Date
+                                        souhaitée</label>
+                                    <input type="date" name="date" required
+                                        class="w-full rounded-lg border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary h-11" />
+                                    <p class="text-xs text-gray-400 mt-1">Les cours ont lieu le Samedi.</p>
+                                </div>
+
+                                <div>
+                                    <label class="text-xs font-bold uppercase text-gray-500 tracking-wider">Votre
+                                        Nom</label>
+                                    <input name="name" type="text" required
+                                        class="w-full rounded-lg border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary h-11" />
+                                </div>
+
+                                <div>
+                                    <label class="text-xs font-bold uppercase text-gray-500 tracking-wider">Email (pour
+                                        l'invitation)</label>
+                                    <input type="email" name="email" required
+                                        class="w-full rounded-lg border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary h-11" />
+                                </div>
+
+                                <div>
+                                    <label class="text-xs font-bold uppercase text-gray-500 tracking-wider">Téléphone
+                                        (Optionnel)</label>
+                                    <input type="tel" name="phone"
+                                        class="w-full rounded-lg border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary h-11" />
+                                </div>
+
+                                <button type="submit"
+                                    class="mt-4 w-full rounded-lg h-12 bg-primary hover:bg-primary-dark text-[#0d1b12] font-bold shadow-md transition-all flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined">download</span>
+                                    Télécharger mon Invitation (.ics)
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- (Restored) BOOKING / CONTACT SECTION -->
+        <section id="contact" class="px-6 py-20 pb-32 max-w-7xl mx-auto border-t border-gray-100">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Left: Calendar UI -->
+                <div class="lg:col-span-12 flex flex-col gap-8">
+                    <div class="text-center mb-10">
+                        <div class="flex items-center justify-center gap-4 mb-4">
+                            <button onclick="changeMonth(-1)"
+                                class="p-2 rounded-full hover:bg-gray-100 transition text-gray-600">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <h2 id="calendar-title" class="text-3xl font-bold min-w-[200px]">Planning</h2>
+                            <button onclick="changeMonth(1)"
+                                class="p-2 rounded-full hover:bg-gray-100 transition text-gray-600">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </div>
+                        <p class="text-gray-500">
+                            Samedi : Cours Collectifs | Semaine : Rendez-vous Privés
+                        </p>
+                    </div>
+                    <!-- Simplified Visual Calendar -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm max-w-4xl mx-auto w-full">
+                        <div class="mb-6 space-y-2 text-center text-gray-600">
+                            <p class="font-bold text-lg text-[#0d1b12] mb-3">Prochaines Sessions :</p>
+                            <p>🌟 <span class="font-bold">Samedi 10 Janvier</span> (Reprise)</p>
+                            <p>📅 Samedi 17 Janvier</p>
+                            <p>📅 Samedi 24 Janvier</p>
+                        </div>
+                        <div class="hidden grid grid-cols-7 gap-2 text-center mb-4 text-sm font-bold text-gray-400">
+                            <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                        </div>
+                        <div id="calendar-grid" class="grid grid-cols-7 gap-2 min-h-[16rem]">
+                            <!-- Dynamic Content -->
+                        </div>
+                        <div class="mt-6 text-center">
+                            <p class="text-sm text-gray-500">Tous les samedis : 15h00 (Chant) / 16h30 (Prise de Parole)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (Restored) Horizontal Layout for Bottom Contact Form -->
+                <div class="lg:col-span-12">
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center justify-between">
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold text-[#0d1b12] mb-2">Une question avant de commencer ?</h3>
+                            <p class="text-gray-500 mb-6">N'hésitez pas à me contacter directement.</p>
+
+                            <a href="https://wa.me/33679886690" target="_blank"
+                                class="inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-[#25D366] text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                                <span class="material-symbols-outlined">chat</span>
+                                Discuter sur WhatsApp
+                            </a>
+                        </div>
+
+                        <div class="md:w-1/2 w-full border-l border-gray-100 md:pl-8">
+                            <form id="contact-form-bottom" class="flex flex-col gap-4">
+                                <h4 class="font-bold text-lg mb-2">Inscription Rapide / Contact</h4>
+                                <input name="name" class="w-full rounded-lg border-gray-200 bg-gray-50 h-11 px-4"
+                                    placeholder="Votre nom" type="text" required />
+                                <input name="email" class="w-full rounded-lg border-gray-200 bg-gray-50 h-11 px-4"
+                                    placeholder="votre@email.com" type="email" required />
+                                <input name="phone" class="w-full rounded-lg border-gray-200 bg-gray-50 h-11 px-4"
+                                    placeholder="Téléphone (ex: 06 12 34 56 78)" type="tel" />
+                                <textarea name="message" rows="2"
+                                    class="w-full rounded-lg border-gray-200 bg-gray-50 p-3 resize-none"
+                                    placeholder="Votre message (optionnel)..."></textarea>
+                                <button type="submit"
+                                    class="w-full rounded-lg h-11 bg-primary hover:bg-primary-dark text-[#0d1b12] font-bold shadow-md transition-all">
+                                    Envoyer
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use only the Modal Defined Earlier, keeping it clean -->
+
+    </main>
+
+    <footer class="bg-background-dark text-white py-12 border-t border-white/10 text-center text-sm text-gray-500">
+        <div class="mb-6 flex flex-col md:flex-row justify-center gap-6 text-gray-400">
+            <p class="flex items-center justify-center gap-2"><span
+                    class="material-symbols-outlined text-sm">call</span> 06 79 88 66 90</p>
+            <p class="flex items-center justify-center gap-2"><span
+                    class="material-symbols-outlined text-sm">mail</span> mesuretpaula@gmail.com</p>
+        </div>
+        <div class="mb-6">
+            <a href="https://paulamesure.com" class="text-primary hover:text-white transition-colors underline">En
+                savoir plus (Site Principal)</a>
+        </div>
+        <p>© 2024 L'Artisanat de la Voix. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+
+</html>

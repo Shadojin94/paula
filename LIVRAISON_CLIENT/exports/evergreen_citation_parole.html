@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "gold": "#C59217", "navy": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- EVERGREEN - Citation Prise de Parole -->
+    <div class="w-[1080px] h-[1080px] bg-navy text-white relative overflow-hidden flex flex-col">
+        <div class="p-12">
+            <img src="../img/logo.png" class="w-[100px]" alt="Logo">
+        </div>
+        
+        <div class="flex-1 flex flex-col items-center justify-center px-20 text-center">
+            <div class="text-gold text-[140px] leading-none opacity-30 font-serif mb-[-30px]">"</div>
+            
+            <h1 class="text-[46px] font-light leading-[1.25] italic mb-10">
+                Sachez porter<br/>une parole claire
+            </h1>
+            
+            <div class="w-24 h-1 bg-gold mb-10"></div>
+            
+            <p class="text-[26px] text-gray-400 leading-relaxed max-w-[700px] mb-12">
+                La clarté de votre message<br/>commence par la clarté<br/>de votre intention.
+            </p>
+            
+            <p class="text-gold text-2xl font-bold tracking-[0.15em] uppercase">
+                Paula Mesuret
+            </p>
+        </div>
+        
+        <div class="p-12 text-center">
+            <p class="text-gray-500 text-lg">paulamesuret.com</p>
+        </div>
+    </div>
+</body>
+</html>

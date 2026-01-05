@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Récapitulatif Livrables - Paula Mesuret</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .text-gold {
+            color: #C59217;
+        }
+
+        .bg-gold {
+            background-color: #C59217;
+        }
+
+        .text-navy {
+            color: #0D1B24;
+        }
+
+        .bg-navy {
+            background-color: #0D1B24;
+        }
+    </style>
+</head>
+
+<body class="py-10 px-4">
+
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+
+        <!-- Header -->
+        <div class="bg-navy p-8 text-center">
+            <h1 class="text-3xl font-bold text-white mb-2">Récapitulatif de Mission</h1>
+            <p class="text-slate-400">Debriefing du 26/12/2025</p>
+        </div>
+
+        <div class="p-8">
+            <p class="text-lg text-slate-600 mb-8">Bonjour Paula,<br><br>Suite à notre point d'aujourd'hui, voici le
+                récapitulatif complet des actions menées et l'accés à vos outils pour la reprise de janvier.</p>
+
+            <!-- 1. CE QUI A ÉTÉ FAIT -->
+            <div class="mb-10">
+                <h2 class="flex items-center gap-3 text-xl font-bold text-navy mb-4 pb-2 border-b border-slate-100">
+                    <div class="p-2 bg-green-100 text-green-600 rounded-lg"><i data-lucide="check-circle-2"></i></div>
+                    Ce qui a été réalisé
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-navy mb-1">Stratégie & Branding</h3>
+                        <p class="text-sm text-slate-500">Positionnement "Anti-Tech / Organique". Charte graphique (Or &
+                            Navy) validée.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-navy mb-1">Landing Page</h3>
+                        <p class="text-sm text-slate-500">Page de présentation et conversion operationnelle.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-navy mb-1">Campagne Janvier</h3>
+                        <p class="text-sm text-slate-500">7 posts datés + 1 carrousel prêts à l'emploi pour remplir les
+                            ateliers.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-navy mb-1">Emailing</h3>
+                        <p class="text-sm text-slate-500">3 templates (Bienvenue, Atelier, Relance) compatibles tous
+                            supports.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. VOS LIVRABLES -->
+            <div class="mb-10">
+                <h2 class="flex items-center gap-3 text-xl font-bold text-navy mb-4 pb-2 border-b border-slate-100">
+                    <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i data-lucide="package"></i></div>
+                    Accès à vos Livrables
+                </h2>
+
+                <div class="space-y-4">
+                    <a href="dashboard_posts.html"
+                        class="block p-4 bg-white border border-slate-200 rounded-xl hover:border-gold hover:shadow-md transition group">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                                    1</div>
+                                <div>
+                                    <h3 class="font-bold text-navy group-hover:text-gold transition">Le Dashboard de
+                                        Publication</h3>
+                                    <p class="text-sm text-slate-500">Votre outil central pour copier-coller les posts.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-slate-300 group-hover:text-gold"><i data-lucide="arrow-right"></i></div>
+                        </div>
+                    </a>
+
+                    <a href="planning_posts_paula.ics"
+                        class="block p-4 bg-white border border-slate-200 rounded-xl hover:border-gold hover:shadow-md transition group">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center font-bold">
+                                    2</div>
+                                <div>
+                                    <h3 class="font-bold text-navy group-hover:text-gold transition">Le Calendrier (ICS)
+                                    </h3>
+                                    <p class="text-sm text-slate-500">Ajoutez les rappels à votre agenda en un clic.</p>
+                                </div>
+                            </div>
+                            <div class="text-slate-300 group-hover:text-gold"><i data-lucide="download"></i></div>
+                        </div>
+                    </a>
+
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                                3</div>
+                            <div>
+                                <h3 class="font-bold text-navy">Les Emails Prêts à Envoyer</h3>
+                                <p class="text-sm text-slate-500">Utilisez ces templates pour vos communications.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 pl-14">
+                            <a href="emails/email_1_bienvenue.html"
+                                class="px-3 py-1 text-xs font-medium bg-slate-100 rounded hover:bg-slate-200 text-slate-600">Bienvenue</a>
+                            <a href="emails/email_2_atelier.html"
+                                class="px-3 py-1 text-xs font-medium bg-slate-100 rounded hover:bg-slate-200 text-slate-600">Ateliers</a>
+                            <a href="emails/email_3_relance.html"
+                                class="px-3 py-1 text-xs font-medium bg-slate-100 rounded hover:bg-slate-200 text-slate-600">Relance</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PROCHAINES ACTIONS -->
+            <div class="mb-8">
+                <h2 class="flex items-center gap-3 text-xl font-bold text-navy mb-4 pb-2 border-b border-slate-100">
+                    <div class="p-2 bg-orange-100 text-orange-600 rounded-lg"><i data-lucide="list-todo"></i></div>
+                    À faire pour la suite
+                </h2>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="square" class="w-5 h-5 text-slate-300 mt-0.5"></i>
+                        <span class="text-slate-700">Valider définitivement ce planning de publication.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="square" class="w-5 h-5 text-slate-300 mt-0.5"></i>
+                        <span class="text-slate-700">M'envoyer la photo "fille bras ouverts" si vous la
+                            retrouvez.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="square" class="w-5 h-5 text-slate-300 mt-0.5"></i>
+                        <span class="text-slate-700">Publier le premier post dimanche 28 déc. (via le Dashboard).</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-gold/10 p-6 rounded-xl text-center">
+                <p class="font-bold text-navy mb-1">Prochain point</p>
+                <p class="text-slate-600 text-sm">Après la reprise du 10 janvier pour faire le bilan.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Office - Paula Mesuret</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#C59217',
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0D1B24",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .preview-area {
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            background-opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-background-dark text-white flex flex-col shrink-0">
+        <div class="p-6 border-b border-white/10">
+            <h1 class="text-xl font-bold tracking-tight">L'Artisanat<br><span class="text-primary">Back Office</span>
+            </h1>
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-white/10 rounded-xl text-white font-medium">
+                <span class="material-symbols-outlined text-primary">edit_note</span>
+                Générateur Posts
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                <span class="material-symbols-outlined">mail</span>
+                Générateur Emails
+            </a>
+            <a href="index.html" target="_blank"
+                class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-colors mt-8 border-t border-white/10">
+                <span class="material-symbols-outlined">open_in_new</span>
+                Voir le site
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center">
+            <h2 class="text-xl font-bold">Générateur de Contenu Social</h2>
+            <div class="flex items-center gap-2 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                Gemini AI Connecté
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-auto p-8 flex gap-8">
+            <!-- Left: Settings -->
+            <div class="w-1/3 space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">tune</span> Configuration
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Plateforme</label>
+                            <div class="flex p-1 bg-gray-100 rounded-lg">
+                                <button
+                                    class="flex-1 py-2 text-sm font-medium rounded-md bg-white shadow-sm text-gray-900">LinkedIn</button>
+                                <button
+                                    class="flex-1 py-2 text-sm font-medium rounded-md text-gray-500 hover:text-gray-900">Instagram</button>
+                                <button
+                                    class="flex-1 py-2 text-sm font-medium rounded-md text-gray-500 hover:text-gray-900">Facebook</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Sujet du Post</label>
+                            <textarea id="topic-input"
+                                class="w-full h-32 rounded-xl border-gray-200 bg-gray-50 p-3 text-sm focus:border-primary focus:ring-primary"
+                                placeholder="Ex: Parler de l'importance du silence avant de prendre la parole..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Ton</label>
+                            <select id="tone-select" class="w-full rounded-xl border-gray-200 bg-gray-50 p-2.5 text-sm">
+                                <option value="Inspirant & Professionnel">Inspirant & Professionnel</option>
+                                <option value="Direct & Autoritaire">Direct & Autoritaire</option>
+                                <option value="Bienveillant & Doux">Bienveillant & Doux</option>
+                            </select>
+                        </div>
+
+                        <button onclick="generatePost()"
+                            class="w-full py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            Générer avec Gemini
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Preview -->
+            <div
+                class="flex-1 bg-gray-100 rounded-3xl p-8 flex flex-col items-center justify-center relative preview-area">
+                <div
+                    class="w-full max-w-md bg-white rounded-xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-[1.02]">
+                    <!-- LinkedIn Header Mockup -->
+                    <div class="p-4 border-b border-gray-100 flex gap-3 items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1888&auto=format&fit=crop')">
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm">Paula Mesuret</h4>
+                            <p class="text-xs text-gray-500">Coach Vocale • L'Artisanat de la Voix</p>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-400 text-xl">more_horiz</span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-4 space-y-4">
+                        <div id="generated-content" class="text-sm text-gray-800 leading-relaxed whitespace-pre-wrap">
+                            Le contenu généré par l'IA apparaîtra ici...
+
+                            En attente de votre sujet pour commencer la création.
+                        </div>
+
+                        <!-- Image Container (Optional) -->
+                        <div class="w-full h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+                            <span class="material-symbols-outlined text-4xl">image</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="p-3 border-t border-gray-100 flex justify-between text-gray-500 px-8">
+                        <span class="material-symbols-outlined">thumb_up</span>
+                        <span class="material-symbols-outlined">comment</span>
+                        <span class="material-symbols-outlined">repeat</span>
+                        <span class="material-symbols-outlined">send</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/ai-generator.js"></script>
+</body>
+
+</html>

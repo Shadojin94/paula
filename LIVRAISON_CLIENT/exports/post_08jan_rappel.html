@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "primary": "#C59217" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- POST JEUDI 08/01 - Type: Rappel événement - J-2 -->
+    <div class="w-[1080px] h-[1080px] bg-[#C59217] text-[#0D1B24] relative overflow-hidden">
+        <div class="absolute inset-0 border-[40px] border-[#0D1B24] flex flex-col justify-between p-20">
+            
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="bg-[#0D1B24] text-white px-6 py-2 text-2xl font-bold rounded-full uppercase">J-2</span>
+                    <p class="mt-4 text-2xl font-medium">Reprise des ateliers</p>
+                </div>
+                <img src="../img/logo.png" class="w-28 brightness-0" alt="Logo">
+            </div>
+            
+            <div class="text-center">
+                <h2 class="text-8xl font-bold leading-none tracking-tighter mb-4">SAMEDI<br/>10 JAN</h2>
+                <p class="text-4xl font-medium">Centre Alésia</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex justify-between items-center border-t-4 border-[#0D1B24] pt-6">
+                    <div>
+                        <p class="text-2xl font-bold">🎤 Atelier Chant</p>
+                        <p class="text-xl">15h00 - 16h30</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-2xl font-bold">🎯 Prise de Parole</p>
+                        <p class="text-xl">16h30 - 18h00</p>
+                    </div>
+                </div>
+                <p class="text-center text-2xl font-bold mt-4">Il reste quelques places → Lien en bio</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "gold": "#C59217", "navy": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- CAROUSEL - Slide 4 : Mieux respirer -->
+    <div class="w-[1080px] h-[1080px] bg-white text-navy relative overflow-hidden flex flex-col">
+        <div class="p-12 flex justify-between items-center">
+            <img src="../img/logo.png" class="w-[80px]" alt="Logo">
+            <p class="text-gold font-bold text-xl">3/5</p>
+        </div>
+        
+        <div class="flex-1 flex flex-col items-center justify-center px-16 text-center">
+            <div class="w-24 h-24 rounded-full bg-gold/10 flex items-center justify-center mb-10">
+                <span class="text-gold text-5xl font-bold">3</span>
+            </div>
+            
+            <h1 class="text-[48px] font-bold leading-[1.15] mb-8">
+                Mieux<br/><span class="text-gold">respirer</span>
+            </h1>
+            
+            <div class="w-20 h-1 bg-gold mb-10"></div>
+            
+            <p class="text-[26px] font-light text-gray-600 leading-relaxed max-w-[700px]">
+                Le chant développe la respiration<br/>costo-abdominale profonde,<br/>bénéfique pour tout le corps.
+            </p>
+        </div>
+        
+        <div class="p-12 text-center">
+            <p class="text-gray-400 text-lg">paulamesuret.com</p>
+        </div>
+    </div>
+</body>
+</html>

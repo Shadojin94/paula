@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "primary": "#C59217", "background-dark": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- POST JEUDI 02/01 - Type: Devinette/Engagement - Thème: Nouvel An -->
+    <div class="w-[1080px] h-[1080px] bg-[#C59217] text-[#0D1B24] relative overflow-hidden">
+        <div class="absolute inset-0 border-[30px] border-[#0D1B24] flex flex-col items-center justify-center p-16 text-center">
+            
+            <span class="text-9xl mb-8">🎉</span>
+            
+            <h2 class="text-6xl font-bold leading-tight mb-8">
+                2026 :<br/>L'année où vous<br/>prenez la parole ?
+            </h2>
+            
+            <div class="w-32 h-1 bg-[#0D1B24] mb-8"></div>
+            
+            <p class="text-3xl font-medium mb-10">
+                Quelle est VOTRE résolution vocale ?
+            </p>
+            
+            <div class="flex gap-4 text-2xl">
+                <span class="bg-[#0D1B24] text-white px-6 py-3 rounded-full">🎤 Chanter</span>
+                <span class="bg-[#0D1B24] text-white px-6 py-3 rounded-full">🎯 Oser parler</span>
+                <span class="bg-[#0D1B24] text-white px-6 py-3 rounded-full">✨ Les deux</span>
+            </div>
+        </div>
+        
+        <img src="../img/logo.png" class="absolute top-16 right-16 w-28 brightness-0" alt="Logo">
+        <div class="absolute bottom-16 left-16 text-[#0D1B24] text-xl font-bold">2 janvier 2026</div>
+    </div>
+</body>
+</html>

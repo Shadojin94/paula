@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "gold": "#C59217", "navy": "#0D1B24" }, fontFamily: { "outfit": ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Outfit', sans-serif; }</style>
+</head>
+<body>
+    <!-- EVERGREEN - Citation Jacques Lecoq -->
+    <div class="w-[1080px] h-[1080px] bg-navy text-white relative overflow-hidden flex flex-col">
+        <div class="p-12">
+            <img src="../img/logo.png" class="w-[100px]" alt="Logo">
+        </div>
+        
+        <div class="flex-1 flex flex-col items-center justify-center px-16 text-center">
+            <div class="text-gold text-[140px] leading-none opacity-30 font-serif mb-[-30px]">"</div>
+            
+            <h1 class="text-[40px] font-light leading-[1.35] italic mb-12">
+                Là où le discours<br/>en reste aux mots,<br/>
+                <span class="text-gold not-italic font-medium">la parole engage<br/>le corps</span>
+            </h1>
+            
+            <div class="w-24 h-1 bg-gold mb-10"></div>
+            
+            <p class="text-gray-400 text-2xl mb-2">Jacques Lecoq</p>
+            <p class="text-gray-500 text-xl">Acteur et metteur en scène</p>
+        </div>
+        
+        <div class="p-12 text-center">
+            <p class="text-gray-500 text-lg">paulamesuret.com</p>
+        </div>
+    </div>
+</body>
+</html>
