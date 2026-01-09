@@ -129,7 +129,7 @@
                             Présence</span>
                     </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight">
-                        <span class="text-red-500">Libérez</span> Votre <br />
+                        Libérez Votre <br />
                         <span class="relative">
                             Résonance
                             <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary" preserveAspectRatio="none"
@@ -234,11 +234,35 @@
                                 "À la rencontre de sa voix". Retrouvez la spontanéité du geste vocal. On travaille
                                 l'oreille, l'intuition et l'appui sur le cœur.
                             </p>
-                            <p class="text-sm text-primary font-medium mb-4">Samedi 15h00 - 16h30 | 350€ trimestriel (9 cours) - Un cours d'essai à 35€ possible.</p>
-                            <button onclick="openModal('Chant')"
-                                class="w-full md:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-primary-dark text-[#0d1b12] font-bold transition-all shadow-lg hover:shadow-primary/30 active:scale-95">
-                                S'inscrire / Info
-                            </button>
+                            <div
+                                class="bg-background-light rounded-xl p-5 border border-[#cfe7d7]/50 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">calendar_today</span>
+                                        <div>
+                                            <p class="text-xs text-text-secondary uppercase font-semibold">Horaire</p>
+                                            <p class="text-sm font-medium text-text-main">Samedi 15h00 - 16h30</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">payments</span>
+                                        <div>
+                                            <p class="text-xs text-text-secondary uppercase font-semibold">Tarif
+                                                Trimestriel (9 Cours)</p>
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-lg font-bold text-text-main">350€</p>
+                                                <span
+                                                    class="text-xs text-text-secondary bg-primary/10 px-2 py-0.5 rounded-full">Essai
+                                                    35€ déduit</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="openModal('Chant')"
+                                    class="w-full md:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-primary-dark text-[#0d1b12] font-bold transition-all shadow-lg hover:shadow-primary/30 active:scale-95">
+                                    S'inscrire / Info
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -280,10 +304,13 @@
                                         <span class="material-symbols-outlined text-primary">payments</span>
                                         <div>
                                             <p class="text-xs text-text-secondary uppercase font-semibold">Tarif
-                                                Trimestriel (9 Cours)</p>                                <div class="flex items-baseline gap-2">
-                                    <p class="text-lg font-bold text-text-main">350€</p>
-                                    <span class="text-xs text-text-secondary bg-primary/10 px-2 py-0.5 rounded-full">Prix : 35 €. Un cours d'essai est possible.</span>
-                                </div>
+                                                Trimestriel (9 Cours)</p>
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-lg font-bold text-text-main">350€</p>
+                                                <span
+                                                    class="text-xs text-text-secondary bg-primary/10 px-2 py-0.5 rounded-full">Essai
+                                                    35€ déduit</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -434,7 +461,52 @@
             </div>
         </section>
 
-        span>
+        <!-- MODAL (Updated with Forms) -->
+        <div id="course-modal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl scale-95 transition-transform duration-300 transform max-h-[90vh] overflow-y-auto"
+                id="modal-content">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-[#0d1b12]">Inscription</h3>
+                    <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Vous avez choisi <span id="modal-course-name" class="font-bold text-primary-dark">le cours</span>.
+                    Comment souhaitez-vous procéder ?
+                </p>
+
+                <div class="grid gap-6">
+                    <!-- Option A: WhatsApp with Message Builder -->
+                    <div class="border border-[#25D366]/30 rounded-xl p-4 bg-[#25D366]/5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="material-symbols-outlined text-[#128C7E]">chat</span>
+                            <span class="font-bold text-[#075E54]">Discussion Directe</span>
+                        </div>
+                        <textarea id="whatsapp-message-input" rows="2"
+                            placeholder="Bonjour Paula, j'ai une question sur..."
+                            class="w-full text-sm p-3 rounded-lg border-gray-200 focus:border-[#25D366] focus:ring-[#25D366] mb-3 resize-none bg-white"></textarea>
+                        <a id="modal-whatsapp-btn" href="#" target="_blank"
+                            class="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#25D366] hover:bg-[#128C7E] text-white font-bold transition-all shadow-md">
+                            Ouvrir WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="relative flex items-center">
+                        <div class="flex-grow border-t border-gray-200"></div>
+                        <span class="flex-shrink-0 mx-4 text-gray-400 text-xs uppercase tracking-widest">OU</span>
+                        <div class="flex-grow border-t border-gray-200"></div>
+                    </div>
+
+                    <!-- Option B: Form / ICS -->
+                    <div>
+                        <button onclick="toggleModalForm()"
+                            class="flex items-center gap-4 p-4 rounded-xl bg-blue-50 border border-blue-100 hover:bg-blue-100 transition-all group text-left w-full">
+                            <div
+                                class="bg-blue-600 text-white p-3 rounded-full group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">event_available</span>
                             </div>
                             <div>
                                 <span class="block font-bold text-blue-900 text-lg">S'inscrire au cours d'essai</span>
