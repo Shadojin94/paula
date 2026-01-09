@@ -435,52 +435,7 @@
             </div>
         </section>
 
-        <!-- MODAL (Updated with Forms) -->
-        <div id="course-modal"
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-            <div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl scale-95 transition-transform duration-300 transform max-h-[90vh] overflow-y-auto"
-                id="modal-content">
-                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-                    <h3 id="modal-title" class="text-2xl font-bold text-[#0d1b12]">Inscription</h3>
-                    <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <span class="material-symbols-outlined">close</span>
-                    </button>
-                </div>
-
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Vous avez choisi <span id="modal-course-name" class="font-bold text-primary-dark">le cours</span>.
-                    Comment souhaitez-vous procéder ?
-                </p>
-
-                <div class="grid gap-6">
-                    <!-- Option A: WhatsApp with Message Builder -->
-                    <div class="border border-[#25D366]/30 rounded-xl p-4 bg-[#25D366]/5">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="material-symbols-outlined text-[#128C7E]">chat</span>
-                            <span class="font-bold text-[#075E54]">Discussion Directe</span>
-                        </div>
-                        <textarea id="whatsapp-message-input" rows="2"
-                            placeholder="Bonjour Paula, j'ai une question sur..."
-                            class="w-full text-sm p-3 rounded-lg border-gray-200 focus:border-[#25D366] focus:ring-[#25D366] mb-3 resize-none bg-white"></textarea>
-                        <a id="modal-whatsapp-btn" href="#" target="_blank"
-                            class="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#25D366] hover:bg-[#128C7E] text-white font-bold transition-all shadow-md">
-                            Ouvrir WhatsApp
-                        </a>
-                    </div>
-
-                    <div class="relative flex items-center">
-                        <div class="flex-grow border-t border-gray-200"></div>
-                        <span class="flex-shrink-0 mx-4 text-gray-400 text-xs uppercase tracking-widest">OU</span>
-                        <div class="flex-grow border-t border-gray-200"></div>
-                    </div>
-
-                    <!-- Option B: Form / ICS -->
-                    <div>
-                        <button onclick="toggleModalForm()"
-                            class="flex items-center gap-4 p-4 rounded-xl bg-blue-50 border border-blue-100 hover:bg-blue-100 transition-all group text-left w-full">
-                            <div
-                                class="bg-blue-600 text-white p-3 rounded-full group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-2xl">event_available</span>
+        span>
                             </div>
                             <div>
                                 <span class="block font-bold text-blue-900 text-lg">S'inscrire au cours d'essai</span>
