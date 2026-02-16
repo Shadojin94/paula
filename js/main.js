@@ -164,7 +164,7 @@ function initCalendar() {
 
     // Helper: Days in month
     function getDaysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
-    // Helper: First day index (0=Sun, 1=Mon... but we want Mon=0, Sun=6)
+    // Helper: First day index (0=Sun... we want Mon=0, Sun=6)
     function getFirstDayOfMonth(y, m) {
         const day = new Date(y, m, 1).getDay();
         return day === 0 ? 6 : day - 1;
@@ -173,17 +173,50 @@ function initCalendar() {
     const daysInMonth = getDaysInMonth(year, month);
     const firstDayIndex = getFirstDayOfMonth(year, month);
 
-    // Holidays (Zone C - Paris) - Approx logic for 2024-2026
+    // Holidays Configuration (Zone C - Paris) + Exceptions
+    // Rule: First Saturday of holidays is ALWAYS a Class. 
+    // Format: Start Date (Inclusive) -> End Date (Inclusive) where NO CLASS takes place.
+    // If a Saturday is "First Saturday", it should NOT be in these ranges.
+
+    const holidayRanges = [
+        // 2025
+        { start: '2025-02-16', end: '2025-03-02' }, // Hiver 2025: Sat 15 is Class.
+        { start: '2025-04-13', end: '2025-04-27' }, // Printemps 2025: Sat 12 is Class.
+        { start: '2025-07-06', end: '2025-08-31' }, // Été 2025: Sat 5 July is Class? Let's assume yes.
+        { start: '2025-10-19', end: '2025-11-02' }, // Toussaint 2025: Sat 18 is Class.
+        { start: '2025-12-21', end: '2026-01-04' }, // Noël 2025: Sat 20 is Class.
+
+        // 2026
+        { start: '2026-02-22', end: '2026-03-08' }, // Hiver 2026: Sat 21 is Class.
+        { start: '2026-04-19', end: '2026-05-03' }, // Printemps 2026: Sat 18 is Class.
+    ];
+
+    // Specific Override for 28 Feb 2026 -> It is a Saturday INSIDE the Hiver 2026 range?
+    // Wait, Hiver 2026 (Zone C) is Sat 21 Feb to Mon 9 March.
+    // Sat 21 Feb = First Saturday -> Class.
+    // Sat 28 Feb = Middle Saturday -> Normally Holiday. USER REQUEST: CLASS.
+    // Sat 7 March = Last Saturday -> Holiday.
+
+    // My range above for Hiver 2026 starts Feb 22 (Sunday) to avoid the 21st. 
+    // But it covers Feb 28. So I need to explicitly EXCLUDE Feb 28 from being treated as a holiday.
+
     const isHoliday = (d, m, y) => {
-        // Noel: ~Dec 21 - Jan 6
-        if ((m === 11 && d >= 21) || (m === 0 && d <= 6)) return true;
-        // Hiver: ~Feb 15 - Mar 3
-        if ((m === 1 && d >= 15) || (m === 2 && d <= 3)) return true;
-        // Printemps: ~Apr 12 - Apr 28
-        if ((m === 3 && d >= 12) || (m === 3 && d <= 28)) return true;
-        // Ete: > July 5
-        if (m === 6 && d >= 5) return true;
-        if (m > 6 && m < 8) return true; // July/Aug full
+        // Create date string YYYY-MM-DD (local)
+        const checkDate = new Date(y, m, d);
+        // Adjust for timezone offset to avoid issues, or simpler: compare strings
+        const pad = n => n < 10 ? '0' + n : n;
+        const dateStr = `${y}-${pad(m + 1)}-${pad(d)}`;
+
+        // Exception: 28 Feb 2026 is ALWAYS CLASS
+        if (dateStr === '2026-02-28') return false;
+
+        for (let range of holidayRanges) {
+            if (dateStr >= range.start && dateStr <= range.end) return true;
+        }
+
+        // Month-based broad check for Summer if not covered fully above (redundant but safe)
+        // if (m === 7) return true; // August always off
+
         return false;
     };
 
@@ -202,9 +235,12 @@ function initCalendar() {
         const holiday = isHoliday(d, month, year);
         const isPast = dateObj < today;
 
-        // Styles basic
-        let classes = "h-auto aspect-square rounded-lg flex flex-col items-center justify-center font-bold text-sm transition relative overflow-hidden ";
-        let content = `<span class="text-xl z-10">${d}</span>`;
+        // Responsive Classes:
+        // Mobile: text-xs, h-10/12. Desktop: text-sm/base, aspect-square.
+        let classes = "w-full aspect-square rounded-md md:rounded-lg flex flex-col items-center justify-center transition relative overflow-hidden ";
+
+        // Font size responsiveness
+        let content = `<span class="text-sm md:text-xl z-10 font-bold">${d}</span>`;
         let onclick = "";
 
         if (isPast) {
@@ -213,20 +249,21 @@ function initCalendar() {
         } else if (isSaturday) {
             // Saturdays
             if (holiday) {
-                classes += "bg-gray-100 text-gray-400 cursor-not-allowed opacity-70";
-                content += `<span class="text-[10px] font-normal z-10">Vacances</span>`;
+                // Vacances
+                classes += "bg-gray-100/80 text-gray-400 cursor-not-allowed border border-gray-100";
+                content += `<span class="text-[0.6rem] md:text-[10px] uppercase font-medium mt-0.5 md:mt-1 z-10 text-gray-400/80">Vacances</span>`;
             } else {
                 // Active Saturday Course
-                classes += "bg-primary text-[#0d1b12] shadow-md hover:scale-105 cursor-pointer transform";
-                content += `<span class="text-[10px] font-normal z-10">Cours</span>`;
+                classes += "bg-primary text-[#0d1b12] shadow-sm md:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer transform";
+                content += `<span class="text-[0.6rem] md:text-[10px] uppercase font-bold mt-0.5 md:mt-1 z-10 opacity-90">Cours</span>`;
                 onclick = `openModal('Atelier du Samedi ${d} ${monthNames[month]}')`;
             }
         } else {
             // Weekdays - Appointment availability
             if (holiday) {
-                classes += "bg-white text-gray-300 border border-gray-50"; // Weekday holiday
+                classes += "bg-white text-gray-200"; // Weekday holiday
             } else {
-                classes += "bg-white border border-gray-100 text-gray-600 hover:bg-primary/10 hover:border-primary/30 cursor-pointer";
+                classes += "bg-white border border-gray-50 text-gray-600 hover:bg-primary/5 hover:border-primary/20 cursor-pointer";
                 onclick = `openModal('Rendez-vous du ${d} ${monthNames[month]}', true)`;
             }
         }
